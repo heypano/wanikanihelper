@@ -4,6 +4,8 @@ import {Link} from "react-router-dom";
 import APIKeyInput from "../inputs/APIKeyInput";
 import {isApiKey} from "../../util/apiKey";
 import Radicals from "./Radicals";
+import Kanjis from "./Kanji";
+import Vocabulary from "./Vocabulary";
 
 class Home extends React.Component {
     constructor(props) {
@@ -85,7 +87,11 @@ class Home extends React.Component {
                 </Jumbotron>
                 {/* Show stuff only if we have an API key */}
                 {this.hasAPIKey() &&
-                    <Radicals apiKey={this.state.apiKey} />
+                    <div>
+                        <Radicals apiKey={this.state.apiKey} />
+                        <Kanjis apiKey={this.state.apiKey} />
+                        <Vocabulary apiKey={this.state.apiKey} />
+                    </div>
                 }
             </div>
         );

@@ -13,7 +13,15 @@ body {
 }
 
 .btn{
+    // Do not make links in buttons blue
     a{
         color: $white-text-color;
+        text-decoration: none;
+    }
+}
+
+.APIKeyInput{
+    input{
+        width: 20em;
     }
 }

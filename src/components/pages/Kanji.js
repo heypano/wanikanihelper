@@ -1,45 +1,45 @@
 import React from 'react';
-import {getRadicals} from "../../api/radicals";
+import {getKanji} from "../../api/kanji";
 import {isApiKey} from "../../util/apiKey";
 import _ from 'lodash';
 
-class Radicals extends React.Component {
+class Kanjis extends React.Component {
     constructor (props) {
         const {apiKey} = props;
         super(props);
 
         this.state = {
             apiKey: apiKey,
-            radicals: []
+            kanjis: []
         };
 
-        this.uniqueId = _.uniqueId("Radicals_");
+        this.uniqueId = _.uniqueId("Kanjis_");
 
         // this.bindMethods();
 
         if(isApiKey(this.state.apiKey)){
-            this.callGetRadicalsService();
+            this.callGetKanjisService();
         }
     }
 
     /**
-     * Call the service to get the radicals for this user
+     * Call the service to get the kanjis for this user
      */
-    callGetRadicalsService() {
+    callGetKanjisService() {
         const {apiKey} = this.state;
 
-        getRadicals(apiKey).then(response => {
+        getKanji(apiKey).then(response => {
             const perLevel = {};
-            response.requested_information.forEach(radical => {
-                const {level} = radical;
+            response.requested_information.forEach(kanji => {
+                const {level} = kanji;
                 if(Array.isArray(perLevel[level])){
-                    perLevel[level].push(radical)
+                    perLevel[level].push(kanji)
                 } else {
-                    perLevel[level] = [radical];
+                    perLevel[level] = [kanji];
                 }
             });
             this.setState({
-                radicals: perLevel
+                kanjis: perLevel
             });
         }).then(error => {
             if(error){
@@ -53,22 +53,22 @@ class Radicals extends React.Component {
      * @returns {*}
      */
     render () {
-        const {radicals} = this.state;
+        const {kanjis} = this.state;
         return (
             <div className="jumbotron">
-                <h2>Radicals</h2>
-                {Object.keys(radicals).map((level, index) => {
-                    const radicalsForLevel = radicals[level];
+                <h2>Kanjis</h2>
+                {Object.keys(kanjis).map((level, index) => {
+                    const kanjisForLevel = kanjis[level];
                     const uniqueLevelId = _.uniqueId(`${this.uniqueId}_level_`);
                     return (
                         <div key={uniqueLevelId}>
                             <h3>Level {level}</h3>
                             <div>
-                                {radicalsForLevel.map((radical, index) => {
-                                        const uniqueRadicalId = _.uniqueId(`${uniqueLevelId}_radical_`);
-                                        const {character, meaning, userdata} = radical;
+                                {kanjisForLevel.map((kanji, index) => {
+                                        const uniqueKanjiId = _.uniqueId(`${uniqueLevelId}_kanji_`);
+                                        const {character, meaning, userdata} = kanji;
                                         return (
-                                            <span key={uniqueRadicalId} className={"mr-2"}>
+                                            <span key={uniqueKanjiId} className={"mr-2"}>
                                                 {character || `N/A: ${meaning}`}
                                             </span>
                                         )
@@ -82,4 +82,4 @@ class Radicals extends React.Component {
     }
 }
 
-export default Radicals;
+export default Kanjis;
