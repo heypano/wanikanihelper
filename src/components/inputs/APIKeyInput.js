@@ -1,6 +1,6 @@
 import React from 'react';
 import {isApiKey} from '../../util/apiKey';
-import _ from 'lodash'
+import _ from 'lodash';
 
 class APIKeyInput extends React.Component {
     constructor (props) {
@@ -55,7 +55,7 @@ class APIKeyInput extends React.Component {
         return (
             <div className="APIKeyInput mb-2">
                 <label htmlFor={inputId}></label>
-                <input name="apiKey" id={inputId} type="text" value={apiKey} onChangeCapture={this.handleAPIInputChange} placeholder={"Enter API Key here"}/>
+                <input name="apiKey" id={inputId} type="text" value={apiKey} onChange={this.handleAPIInputChange} placeholder={"Enter API Key here"}/>
             </div>
         );
     }

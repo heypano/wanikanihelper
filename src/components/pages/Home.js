@@ -19,33 +19,41 @@ class Home extends React.Component {
         };
     }
 
+    componentDidMount () {
+        this.updateAPIKeyStuff();
+    }
+
 
     /**
      * Bind the various handlers to make sure they are attached to this class
      */
     bindMethods() {
-        this.onButtonClick = this.onButtonClick.bind(this);
         this.onAPIKeySet = this.onAPIKeySet.bind(this);
     }
 
     /**
-     * Button click handler
-     * @param {SyntheticEvent} e - Look at https://reactjs.org/docs/events.html
-     */
-    onButtonClick(e) {
-        // This is how we redirect in code
-        this.props.history.push('/c2');
-    }
-
-    /**
-     * Called by the child component APIKeyInput when the API key is successfully set
+     * Called by the child component APIKeyInput when the API key is successfully set.
      * @param apiKey
      */
     onAPIKeySet(apiKey){
-        console.log(`API KEY SET ${apiKey}`)
-        this.setState({
-            apiKey: apiKey
+        this.setState((prevState, props) => {
+            this.updateAPIKeyStuff(apiKey);
+            return {
+                apiKey: apiKey
+            };
         })
+
+    }
+
+    /**
+     * Called to update whatever needs to be updated when the API key is set correctly
+     * @param apiKey
+     */
+    updateAPIKeyStuff(apiKey){
+        if(isApiKey(apiKey)){
+            // Change the URL
+            this.props.history.push(`/profile/${apiKey}`);
+        }
     }
 
     /**
@@ -69,11 +77,11 @@ class Home extends React.Component {
                     <hr className="my-2"/>
                     <p>The goal is to show what Radicals, Kanji and Vocabulary you have learned and be able to share that with the world.</p>
                     <APIKeyInput apiKey={this.state.apiKey} onAPIKeySet={this.onAPIKeySet}/>
-                    <p className="lead">
-                        <Button color="primary" className={"mr-2"}><Link to="radicals" >Radicals</Link><br /></Button>
-                        <Button color="primary" className={"mr-2"}><Link to="kanji" >Kanji</Link><br /></Button>
-                        <Button color="primary" className={"mr-2"}><Link to="vocabulary" >Vocabulary</Link><br /></Button>
-                    </p>
+                    {/*<p className="lead">*/}
+                        {/*<Button color="primary" className={"mr-2"}><Link to="radicals" >Radicals</Link><br /></Button>*/}
+                        {/*<Button color="primary" className={"mr-2"}><Link to="kanji" >Kanji</Link><br /></Button>*/}
+                        {/*<Button color="primary" className={"mr-2"}><Link to="vocabulary" >Vocabulary</Link><br /></Button>*/}
+                    {/*</p>*/}
                 </Jumbotron>
                 {/* Show stuff only if we have an API key */}
                 {this.hasAPIKey() &&

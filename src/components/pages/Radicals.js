@@ -1,8 +1,7 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
-import {UncontrolledTooltip as Tooltip} from 'reactstrap';
 import {getRadicals} from "../../api/radicals";
 import {isApiKey} from "../../util/apiKey";
+import _ from 'lodash';
 
 class Radicals extends React.Component {
     constructor (props) {
@@ -10,26 +9,33 @@ class Radicals extends React.Component {
         super(props);
 
         this.state = {
-            apiKey: apiKey
+            apiKey: apiKey,
+            radicals: []
         };
+
+        this.uniqueId = _.uniqueId("Radicals_");
 
         // this.bindMethods();
 
         if(isApiKey(this.state.apiKey)){
-            this.getRadicals();
+            this.callGetRadicalsService();
         }
     }
 
     /**
      * Call the service to get the radicals for this user
      */
-    getRadicals() {
+    callGetRadicalsService() {
         const {apiKey} = this.state;
 
         getRadicals(apiKey).then(response => {
-            console.log("PResponse!", response);
-        }). then(error => {
-            console.log("PError!", error);
+            this.setState({
+                radicals: response.requested_information
+            });
+        }).then(error => {
+            if(error){
+                console.log("PError!", error);
+            }
         })
     }
 
@@ -38,9 +44,18 @@ class Radicals extends React.Component {
      * @returns {*}
      */
     render () {
+        const {radicals} = this.state;
         return (
-            <div className="radicals">
-                Yo
+            <div className="jumbotron">
+                {radicals.map((radical, index) => {
+                    const uniqueId = _.uniqueId(`${this.uniqueId}_radical_`);
+                    const {character, level, meaning, userdata} = radical;
+                    return (
+                        <span key={uniqueId} className={"mr-2"}>
+                            {character}
+                        </span>
+                    )
+                })}
             </div>
         );
     }
