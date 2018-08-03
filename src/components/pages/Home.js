@@ -6,6 +6,7 @@ import {isApiKey} from "../../util/apiKey";
 import Radicals from "./Radicals";
 import Kanjis from "./Kanji";
 import Vocabulary from "./Vocabulary";
+import copy from 'copy-to-clipboard';
 
 class Home extends React.Component {
     constructor(props) {
@@ -17,7 +18,8 @@ class Home extends React.Component {
         this.bindMethods();
 
         this.state = {
-            apiKey: apiKey
+            apiKey: apiKey,
+            profileCopied: false // To track whether the profile copy button has been clicked
         };
     }
 
@@ -31,6 +33,19 @@ class Home extends React.Component {
      */
     bindMethods() {
         this.onAPIKeySet = this.onAPIKeySet.bind(this);
+        this.onCopyProfileUrlClick = this.onCopyProfileUrlClick.bind(this);
+    }
+
+    /**
+     * Called when the button "Copy profile URL" is clicked
+     * @param e
+     */
+    onCopyProfileUrlClick(e){
+        const url = window.location.toString();
+        copy(url);
+        this.setState({
+            profileCopied: true
+        })
     }
 
     /**
@@ -77,13 +92,19 @@ class Home extends React.Component {
                     <h1 className="display-3">Pano&apos;s WaniKani helper!</h1>
                     <p className="lead">This is a very simple helper for <a href="https://www.wanikani.com/">WaniKani</a>. At least for now.</p>
                     <hr className="my-2"/>
-                    <p>The goal is to show what Radicals, Kanji and Vocabulary you have learned and be able to share that with the world.</p>
+                    <p>The goal is to show what <strong>Radicals</strong>, <strong>Kanji</strong> and <strong>Vocabulary</strong> you have learned and be able to share that with the world.</p>
                     <APIKeyInput apiKey={this.state.apiKey} onAPIKeySet={this.onAPIKeySet}/>
-                    {/*<p className="lead">*/}
-                        {/*<Button color="primary" className={"mr-2"}><Link to="radicals" >Radicals</Link><br /></Button>*/}
-                        {/*<Button color="primary" className={"mr-2"}><Link to="kanji" >Kanji</Link><br /></Button>*/}
-                        {/*<Button color="primary" className={"mr-2"}><Link to="vocabulary" >Vocabulary</Link><br /></Button>*/}
-                    {/*</p>*/}
+                    {/* Show stuff only if we have an API key */}
+                    {this.hasAPIKey() &&
+                        <div>
+                            <Button color="primary" onClick={this.onCopyProfileUrlClick}>Copy Profile URL</Button>
+                            {
+                                this.state.profileCopied &&
+                                <span className={"ml-2"}>A link to this page has been copied!</span>
+                            }
+                        </div>
+                    }
+
                 </Jumbotron>
                 {/* Show stuff only if we have an API key */}
                 {this.hasAPIKey() &&
