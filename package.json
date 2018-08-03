@@ -1,7 +1,7 @@
 {
-    "name": "heypano-web-starter-kit",
+    "name": "heypano-wanikani-helper",
     "version": "1.0.1",
-    "description": "Pano's JS (Web Dev) starter kit",
+    "description": "Pano's JS WaniKani helper",
     "main": "index.js",
     "config": {
         "server": {
@@ -84,7 +84,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/heypano/web-starter-kit.git"
+        "url": "git+https://github.com/heypano/wanikanihelper.git"
     },
     "keywords": [
         "js",
@@ -96,7 +96,7 @@
     "author": "Pano Papadatos (www.heypano.com)",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/heypano/web-starter-kit/issues"
+        "url": "https://github.com/heypano/wanikanihelper/issues"
     },
-    "homepage": "https://github.com/heypano/web-starter-kit#readme"
+    "homepage": "https://github.com/heypano/wanikanihelper#readme"
 }

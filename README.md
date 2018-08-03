@@ -1,5 +1,5 @@
-# web-starter-kit
-Pano's JS (Web Dev) starter kit
+# wanikani-helper
+Pano's JS Wanikani Helper
 
 ## Build Commands
 
