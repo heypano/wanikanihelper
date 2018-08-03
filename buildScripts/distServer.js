@@ -7,13 +7,13 @@ import compression from 'compression';
 const config = pckg.config;
 const port = config.server.port;
 const server = express();
-const distDir = "../dist/";
+const distDir = "../docs/";
 const entryFile = "index.html";
 const domain = "http://localhost";
 const siteAddress = domain + ":" + port;
 
 server.use(compression());
-server.use(express.static('dist'));
+server.use(express.static('docs'));
 
 server.get('/', function(req,res) {
     var file = getPath(distDir + entryFile);
