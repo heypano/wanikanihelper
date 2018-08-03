@@ -9109,17 +9109,32 @@ a.text-dark:hover, a.text-dark:focus {
   .table-bordered th,
   .table-bordered td {
     border: 1px solid #ddd !important; } }
-/* Colors */
+/* Colors Some from https://palx.jxnblk.com/00a1f1 */
+/* WaniKani */
 body {
   font-family: "BryantProRegular", 'Helvetica Neue', helvetica, arial, sans-serif, "Helvetica Neue";
-  background-color: #BABABA;
-  color: #123123; }
+  background-color: #364046;
+  color: #364046; }
+
+.jumbotron {
+  background-color: #cdd4d7; }
 
 .btn a {
-  color: #EDEDED;
+  color: #ebedef;
   text-decoration: none; }
 
 .APIKeyInput input {
   width: 20em; }
 
-/*# sourceMappingURL=index.8910f46100c4463a22ddfdf9a63a55a6.css.map*/
+.vocabularyCell,
+.radicalCell,
+.kanjiCell {
+  display: inline-block;
+  text-align: center;
+  font-size: 1.3em;
+  border-radius: 4px;
+  padding: 8px 8px;
+  margin: 10px 10px;
+  background-color: #ebedef; }
+
+/*# sourceMappingURL=index.efde8cd4dc62ed06d232576e137b38e3.css.map*/
