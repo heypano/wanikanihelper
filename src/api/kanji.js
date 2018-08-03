@@ -1,12 +1,12 @@
 import service from '../util/service';
 
 /**
- * Service to get the list of kanji learned by user UUID on wanikani
- * @param {string} uuid
+ * Service to get the list of kanji learned by user apiKey on wanikani
+ * @param {string} apiKey
  * @returns {Promise<Response>}
  */
-export function getKanji(uuid) {
-    return service.get(`https://www.wanikani.com/api/user/${uuid}/kanji/`);
+export function getKanji(apiKey) {
+    return service.get(`https://www.wanikani.com/api/user/${apiKey}/kanji/`);
 }
 
 export default {
