@@ -67,14 +67,14 @@ class Vocabulary extends React.Component {
                         return (
                             <div key={uniqueLevelId}>
                                 <h3>Level {level}</h3>
-                                <div>
+                                <div className={"vocabularyContainer"}>
                                     {vocabulariesForLevel.map((vocabulary, index) => {
                                             const uniqueVocabularyId = _.uniqueId(`${uniqueLevelId}_vocabulary_`);
                                             const {character, meaning, userdata} = vocabulary;
                                             return (
-                                                <span key={uniqueVocabularyId} className={"mr-2"}>
-                                                    {character || `N/A: ${meaning}`}
-                                                </span>
+                                                <div key={uniqueVocabularyId} className={"vocabularyCell"}>
+                                                    {character || `${meaning}`}
+                                                </div>
                                             )
                                     })}
                                 </div>

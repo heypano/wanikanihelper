@@ -67,14 +67,14 @@ class Kanji extends React.Component {
                         return (
                             <div key={uniqueLevelId}>
                                 <h3>Level {level}</h3>
-                                <div>
+                                <div className={"kanjiContainer"}>
                                     {kanjisForLevel.map((kanji, index) => {
                                             const uniqueKanjiId = _.uniqueId(`${uniqueLevelId}_kanji_`);
                                             const {character, meaning, userdata} = kanji;
                                             return (
-                                                <span key={uniqueKanjiId} className={"mr-2"}>
-                                                    {character || `N/A: ${meaning}`}
-                                                </span>
+                                                <div key={uniqueKanjiId} className={"kanjiCell"}>
+                                                    {character || `${meaning}`}
+                                                </div>
                                             )
                                     })}
                                 </div>

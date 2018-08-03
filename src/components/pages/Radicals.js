@@ -67,14 +67,14 @@ class Radicals extends React.Component {
                         return (
                             <div key={uniqueLevelId}>
                                 <h3>Level {level}</h3>
-                                <div>
+                                <div className={"radicalContainer"}>
                                     {radicalsForLevel.map((radical, index) => {
                                             const uniqueRadicalId = _.uniqueId(`${uniqueLevelId}_radical_`);
                                             const {character, meaning, userdata} = radical;
                                             return (
-                                                <span key={uniqueRadicalId} className={"mr-2"}>
-                                                    {character || `N/A: ${meaning}`}
-                                                </span>
+                                                <div key={uniqueRadicalId} className={"radicalCell"}>
+                                                    {character || `${meaning}`}
+                                                </div>
                                             )
                                     })}
                                 </div>
