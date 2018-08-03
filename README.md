@@ -1,6 +1,8 @@
 # wanikani-helper
 Pano's JS Wanikani Helper
 
+This repository is based on [the react branch of my web-starter-kit](https://github.com/heypano/web-starter-kit/tree/react)
+
 ## Build Commands
 
 - All build commands for this application go through `npm` and are defined in `/package.json` under the `"scripts"` property.
