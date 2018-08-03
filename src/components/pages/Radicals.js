@@ -58,24 +58,29 @@ class Radicals extends React.Component {
             <div className="jumbotron">
                 <h2>Radicals</h2>
                 {Object.keys(radicals).map((level, index) => {
-                    const radicalsForLevel = radicals[level];
+                    const radicalsForLevel = radicals[level].filter(radical => {
+                        // Only list items where the user has gotten the meaning correct at least once
+                        return (radical.user_specific && radical.user_specific.meaning_correct > 0);
+                    });
                     const uniqueLevelId = _.uniqueId(`${this.uniqueId}_level_`);
-                    return (
-                        <div key={uniqueLevelId}>
-                            <h3>Level {level}</h3>
-                            <div>
-                                {radicalsForLevel.map((radical, index) => {
-                                        const uniqueRadicalId = _.uniqueId(`${uniqueLevelId}_radical_`);
-                                        const {character, meaning, userdata} = radical;
-                                        return (
-                                            <span key={uniqueRadicalId} className={"mr-2"}>
-                                                {character || `N/A: ${meaning}`}
-                                            </span>
-                                        )
-                                })}
+                    if(radicalsForLevel.length > 0){
+                        return (
+                            <div key={uniqueLevelId}>
+                                <h3>Level {level}</h3>
+                                <div>
+                                    {radicalsForLevel.map((radical, index) => {
+                                            const uniqueRadicalId = _.uniqueId(`${uniqueLevelId}_radical_`);
+                                            const {character, meaning, userdata} = radical;
+                                            return (
+                                                <span key={uniqueRadicalId} className={"mr-2"}>
+                                                    {character || `N/A: ${meaning}`}
+                                                </span>
+                                            )
+                                    })}
+                                </div>
                             </div>
-                        </div>
-                    );
+                        );
+                    }
                 })}
             </div>
         );

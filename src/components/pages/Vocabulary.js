@@ -58,24 +58,29 @@ class Vocabulary extends React.Component {
             <div className="jumbotron">
                 <h2>Vocabulary</h2>
                 {Object.keys(vocabularies).map((level, index) => {
-                    const vocabulariesForLevel = vocabularies[level];
+                    const vocabulariesForLevel = vocabularies[level].filter(vocabulary => {
+                        // Only list items where the user has gotten the meaning correct at least once
+                        return (vocabulary.user_specific && vocabulary.user_specific.meaning_correct > 0);
+                    });
                     const uniqueLevelId = _.uniqueId(`${this.uniqueId}_level_`);
-                    return (
-                        <div key={uniqueLevelId}>
-                            <h3>Level {level}</h3>
-                            <div>
-                                {vocabulariesForLevel.map((vocabulary, index) => {
-                                        const uniqueVocabularyId = _.uniqueId(`${uniqueLevelId}_vocabulary_`);
-                                        const {character, meaning, userdata} = vocabulary;
-                                        return (
-                                            <span key={uniqueVocabularyId} className={"mr-2"}>
-                                                {character || `N/A: ${meaning}`}
-                                            </span>
-                                        )
-                                })}
+                    if(vocabulariesForLevel.length > 0){
+                        return (
+                            <div key={uniqueLevelId}>
+                                <h3>Level {level}</h3>
+                                <div>
+                                    {vocabulariesForLevel.map((vocabulary, index) => {
+                                            const uniqueVocabularyId = _.uniqueId(`${uniqueLevelId}_vocabulary_`);
+                                            const {character, meaning, userdata} = vocabulary;
+                                            return (
+                                                <span key={uniqueVocabularyId} className={"mr-2"}>
+                                                    {character || `N/A: ${meaning}`}
+                                                </span>
+                                            )
+                                    })}
+                                </div>
                             </div>
-                        </div>
-                    );
+                        );
+                    }
                 })}
             </div>
         );
