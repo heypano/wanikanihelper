@@ -3,7 +3,7 @@ import {getKanji} from "../../api/kanji";
 import {isApiKey} from "../../util/apiKey";
 import _ from 'lodash';
 
-class Kanjis extends React.Component {
+class Kanji extends React.Component {
     constructor (props) {
         const {apiKey} = props;
         super(props);
@@ -56,7 +56,7 @@ class Kanjis extends React.Component {
         const {kanjis} = this.state;
         return (
             <div className="jumbotron">
-                <h2>Kanjis</h2>
+                <h2>Kanji</h2>
                 {Object.keys(kanjis).map((level, index) => {
                     const kanjisForLevel = kanjis[level];
                     const uniqueLevelId = _.uniqueId(`${this.uniqueId}_level_`);
@@ -82,4 +82,4 @@ class Kanjis extends React.Component {
     }
 }
 
-export default Kanjis;
+export default Kanji;
