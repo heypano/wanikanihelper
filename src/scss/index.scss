@@ -1,8 +1,19 @@
-$background-color: #BABABA;
+/* Colors */
+$grey: #BABABA;
+$white: #EDEDED;
+
+$background-color: $grey;
+$white-text-color: $white;
 $text-color: #123123;
 
 body {
     font-family: "BryantProRegular", 'Helvetica Neue', helvetica, arial, sans-serif, "Helvetica Neue";
     background-color: $background-color;
     color: $text-color;
+}
+
+.btn{
+    a{
+        color: $white-text-color;
+    }
 }
