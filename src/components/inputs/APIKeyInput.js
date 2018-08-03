@@ -54,7 +54,7 @@ class APIKeyInput extends React.Component {
 
         return (
             <div className="APIKeyInput mb-2">
-                <label htmlFor={inputId}></label>
+                <label htmlFor={inputId}>Please enter your API key below</label><br />
                 <input name="apiKey" id={inputId} type="text" value={apiKey} onChange={this.handleAPIInputChange} placeholder={"Enter API Key here"}/>
             </div>
         );
