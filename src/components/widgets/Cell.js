@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 // Class Component
 class Cell extends React.Component {
@@ -6,12 +7,17 @@ class Cell extends React.Component {
         super(props);
     }
     render() {
-        const {cellData} = this.props;
+        const {cellData, extraClassName} = this.props;
         const {character, meaning} = cellData;
-        return <div  className={`wordCell ${this.props.extraClassName}`}>
+        return <div  className={`wordCell ${extraClassName}`}>
             {character || `${meaning}`}
         </div>
     }
 }
+
+Cell.propTypes = {
+    cellData: PropTypes.object,
+    label: PropTypes.string
+};
 
 export default Cell;
