@@ -2,6 +2,7 @@ import React from 'react';
 import {getRadicals} from "../../api/radicals";
 import {isApiKey} from "../../util/apiKey";
 import _ from 'lodash';
+import Cell from "../widgets/Cell";
 
 class Radicals extends React.Component {
     constructor (props) {
@@ -70,11 +71,8 @@ class Radicals extends React.Component {
                                 <div className={"radicalContainer"}>
                                     {radicalsForLevel.map((radical, index) => {
                                             const uniqueRadicalId = _.uniqueId(`${uniqueLevelId}_radical_`);
-                                            const {character, meaning, userdata} = radical;
                                             return (
-                                                <div key={uniqueRadicalId} className={"radicalCell"}>
-                                                    {character || `${meaning}`}
-                                                </div>
+                                                <Cell key={uniqueRadicalId} extraClassName={"radicalCell"} cellData={radical}></Cell>
                                             )
                                     })}
                                 </div>

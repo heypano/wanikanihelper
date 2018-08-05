@@ -2,6 +2,7 @@ import React from 'react';
 import {getVocabulary} from "../../api/vocabulary";
 import {isApiKey} from "../../util/apiKey";
 import _ from 'lodash';
+import Cell from "../widgets/Cell";
 
 class Vocabulary extends React.Component {
     constructor (props) {
@@ -70,11 +71,8 @@ class Vocabulary extends React.Component {
                                 <div className={"vocabularyContainer"}>
                                     {vocabulariesForLevel.map((vocabulary, index) => {
                                             const uniqueVocabularyId = _.uniqueId(`${uniqueLevelId}_vocabulary_`);
-                                            const {character, meaning, userdata} = vocabulary;
                                             return (
-                                                <div key={uniqueVocabularyId} className={"vocabularyCell"}>
-                                                    {character || `${meaning}`}
-                                                </div>
+                                                <Cell key={uniqueVocabularyId} extraClassName={"vocabularyCell"} cellData={vocabulary}></Cell>
                                             )
                                     })}
                                 </div>

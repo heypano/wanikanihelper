@@ -1,6 +1,7 @@
 import React from 'react';
 import {getKanji} from "../../api/kanji";
 import {isApiKey} from "../../util/apiKey";
+import Cell from "../widgets/Cell";
 import _ from 'lodash';
 
 class Kanji extends React.Component {
@@ -70,11 +71,8 @@ class Kanji extends React.Component {
                                 <div className={"kanjiContainer"}>
                                     {kanjisForLevel.map((kanji, index) => {
                                             const uniqueKanjiId = _.uniqueId(`${uniqueLevelId}_kanji_`);
-                                            const {character, meaning, userdata} = kanji;
                                             return (
-                                                <div key={uniqueKanjiId} className={"kanjiCell"}>
-                                                    {character || `${meaning}`}
-                                                </div>
+                                                <Cell key={uniqueKanjiId} extraClassName={"kanjiCell"} cellData={kanji}></Cell>
                                             )
                                     })}
                                 </div>
