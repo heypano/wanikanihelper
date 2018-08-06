@@ -62,14 +62,7 @@ body {
     // background-color: $vocabularyPurple;
 }
 
-.radicalContainer,
-.kanjiContainer,
-.vocabularyContainer{
-}
-
-.vocabularyCell,
-.radicalCell,
-.kanjiCell{
+.wordCell{
     display: inline-block;
     text-align: center;
     font-size: $cellFontSize;
@@ -77,4 +70,8 @@ body {
     padding: $paddingBase $paddingBase;
     margin: $marginBase $marginBase;
     background-color: $cellBackground;
+    img.wordCellImage{
+        filter: invert(100);
+        width: 20.81px;
+    }
 }
