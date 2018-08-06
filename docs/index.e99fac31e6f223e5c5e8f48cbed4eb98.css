@@ -9126,9 +9126,7 @@ body {
 .APIKeyInput input {
   width: 20em; }
 
-.vocabularyCell,
-.radicalCell,
-.kanjiCell {
+.wordCell {
   display: inline-block;
   text-align: center;
   font-size: 1.3em;
@@ -9136,5 +9134,8 @@ body {
   padding: 8px 8px;
   margin: 10px 10px;
   background-color: #ebedef; }
+  .wordCell img.wordCellImage {
+    filter: invert(100);
+    width: 20.81px; }
 
-/*# sourceMappingURL=index.efde8cd4dc62ed06d232576e137b38e3.css.map*/
+/*# sourceMappingURL=index.e99fac31e6f223e5c5e8f48cbed4eb98.css.map*/
