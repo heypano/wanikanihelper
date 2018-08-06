@@ -1,6 +1,7 @@
 import React from 'react';
 import CellGrid from "../widgets/CellGrid";
 import PropTypes from "prop-types";
+import {meaningCorrectAtLeastOnce} from "../../util/filters";
 
 class Vocabulary extends CellGrid {
     constructor (props) {
@@ -13,6 +14,7 @@ Vocabulary.defaultProps = {
     extraClassName: "vocabularyContainer",
     cellClassName: "vocabularyCell",
     groupedByLabel: "Level",
+    filterFunction: meaningCorrectAtLeastOnce,
     getArrayPath :  ((data) => data.requested_information.general)
 };
 
