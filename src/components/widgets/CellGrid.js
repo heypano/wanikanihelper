@@ -33,25 +33,35 @@ class CellGrid extends React.Component {
         return itemCollection
     }
     getList(itemCollection){
-        let {groupFunction, groupedByLabel, cellClassName} = this.props;
+        let {groupFunction, groupedByLabel, cellClass} = this.props;
+        let CellClass = cellClass || Cell;
         if(groupFunction){
             return _.map(itemCollection, (group, groupName) => {
                 const uniqueGroupId = _.uniqueId(groupName);
                 const groupItems = itemCollection[groupName];
-                return <div key={uniqueGroupId}>
-                    <h3>{groupedByLabel} {groupName}</h3>
-                    {_.map(groupItems, ((item, key) => {
-                            return <Cell key={key} extraClassName={cellClassName} cellData={item}></Cell>
-                    }))}
-                </div>;
+                return(
+                    <div key={uniqueGroupId} className={"cellGridGroup"}>
+                        <h3>{groupedByLabel} {groupName}</h3>
+                        {_.map(groupItems, (item, key) => this.getCell(CellClass, key, item))}
+                    </div>
+                    );
             })
         } else {
-            return _.map(itemCollection, ((item, key) => {
-                        return <Cell key={key} extraClassName={cellClassName} cellData={item}></Cell>
-                    }
-            ))
+            return _.map(itemCollection, (item, key) => this.getCell(CellClass, key, item));
         }
     }
+
+    /**
+     *
+     * @param CellClass - the specific Cell class e.g. KanjiCell
+     * @param key - the key (for map)
+     * @param cellData - the data for the cell
+     * @returns {Element} - The react element from JSX / React.createElement
+     */
+    getCell (CellClass, key, cellData) {
+        return <CellClass key={key} cellData={cellData}></CellClass>
+    }
+
     render() {
         let {extraClassName, itemArray, topLabel, groupFunction} = this.props;
         const itemCollection = this.prepareData(itemArray);
@@ -69,7 +79,7 @@ class CellGrid extends React.Component {
 CellGrid.propTypes = {
     itemArray: PropTypes.object.isRequired, // The list of items to render
     extraClassName: PropTypes.string.isRequired, // Extra CSS class
-    cellClassName: PropTypes.string.isRequired, // CSS class for the cell
+    cellClass: PropTypes.func, // React Component class for the cell
     topLabel: PropTypes.string.isRequired, // The top label to use
     getArrayPath: PropTypes.func, // Function that returns the array of items from the data
     sortFunction: PropTypes.func,

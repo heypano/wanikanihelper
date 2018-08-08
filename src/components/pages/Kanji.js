@@ -2,6 +2,7 @@ import React from 'react';
 import CellGrid from "../widgets/CellGrid";
 import PropTypes from "prop-types";
 import {meaningCorrectAtLeastOnce} from "../../util/filters";
+import KanjiCell from "../widgets/KanjiCell";
 
 class Kanji extends CellGrid {
     constructor (props) {
@@ -12,10 +13,10 @@ class Kanji extends CellGrid {
 Kanji.defaultProps = {
     topLabel: "Kanji",
     extraClassName: "kanjiContainer",
-    cellClassName: "kanjiCell",
     groupedByLabel: "Level",
     filterFunction: meaningCorrectAtLeastOnce,
-    getArrayPath :  ((data) => data.requested_information)
+    getArrayPath :  ((data) => data.requested_information),
+    cellClass: KanjiCell
 };
 
 Kanji.propTypes = {

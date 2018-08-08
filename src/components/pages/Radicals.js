@@ -2,6 +2,7 @@ import React from 'react';
 import CellGrid from "../widgets/CellGrid";
 import PropTypes from "prop-types";
 import {meaningCorrectAtLeastOnce} from "../../util/filters";
+import RadicalCell from "../widgets/RadicalCell";
 
 class Radicals extends CellGrid {
     constructor (props) {
@@ -12,10 +13,10 @@ class Radicals extends CellGrid {
 Radicals.defaultProps = {
     topLabel: "Radicals",
     extraClassName: "radicalContainer",
-    cellClassName: "radicalCell",
     groupedByLabel: "Level",
     filterFunction: meaningCorrectAtLeastOnce,
-    getArrayPath :  ((data) => data.requested_information)
+    getArrayPath :  ((data) => data.requested_information),
+    cellClass: RadicalCell
 };
 
 Radicals.propTypes = {
