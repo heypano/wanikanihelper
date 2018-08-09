@@ -45,7 +45,7 @@ class CellGrid extends React.Component {
                 const groupItems = itemCollectionByGroup[groupName];
                 return(
                     <div key={uniqueGroupId} className={"cellGridGroup"}>
-                        <h3>{groupedByLabel} {groupName}</h3>
+                        <h3>{groupedByLabel} {groupName} - Total: {_.size(groupItems)}</h3>
                         {_.map(groupItems, (item, key) => this.getCell(CellClass, key, item))}
                     </div>
                     );
