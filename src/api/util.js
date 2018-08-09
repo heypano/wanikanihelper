@@ -10,7 +10,11 @@ function defaultErrorHandler (error){
  * @returns {string}
  */
 function encodeApiKeyForUrl (apiKey) {
-    return encodeURIComponent(btoa(apiKey));
+    let result = "";
+    if(apiKey){
+        result = encodeURIComponent(btoa(apiKey));
+    }
+    return result;
 }
 
 /**
@@ -19,7 +23,11 @@ function encodeApiKeyForUrl (apiKey) {
  * @returns {string}
  */
 function decodeApiKeyFromUrlParam (apiKey){
-    return atob(decodeURIComponent(apiKey));
+    let result = "";
+    if(apiKey){
+        result = atob(decodeURIComponent(apiKey));
+    }
+    return result;
 }
 
 export {

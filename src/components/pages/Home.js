@@ -1,7 +1,4 @@
 import React from 'react';
-import { Jumbotron, Button } from 'reactstrap';
-import {Link} from "react-router-dom";
-import APIKeyInput from "../inputs/APIKeyInput";
 import {isApiKey} from "../../util/apiKey";
 import Radicals from "./Radicals";
 import Kanji from "./Kanji";
@@ -11,7 +8,8 @@ import {decodeApiKeyFromUrlParam, encodeApiKeyForUrl, defaultErrorHandler} from 
 import {getRadicals} from "../../api/radicals";
 import {getVocabulary} from "../../api/vocabulary";
 import {getKanji} from "../../api/kanji";
-import CellGrid from "../widgets/CellGrid";
+import ProfileHeader from "../widgets/ProfileHeader";
+import WelcomeHeader from "../widgets/WelcomeHeader";
 
 class Home extends React.Component {
     constructor(props) {
@@ -159,6 +157,13 @@ class Home extends React.Component {
         return item.level;
     }
 
+    getHeader (){
+        const HeaderClass = this.hasAPIKey() ? ProfileHeader : WelcomeHeader;
+        return <div className={"homeHeader"}>
+            <HeaderClass onAPIKeySet={this.onAPIKeySet} apiKey={this.state.apiKey}></HeaderClass>
+        </div>
+    }
+
     /**
      * Render the component based on the state and props (will be called every time state changes with setState)
      * @returns {*}
@@ -166,29 +171,7 @@ class Home extends React.Component {
     render() {
         return (
             <div>
-                <Jumbotron>
-                    <h1 className="display-3">Share your Progress on WaniKani</h1>
-                    <hr className="my-2"/>
-                    <p>
-                        The goal of this app is to show you what <strong>Radicals</strong>, <strong>Kanji</strong> and <strong>Vocabulary</strong> you have learned on <a href="https://www.wanikani.com/" target={"_blank"}>WaniKani</a>, and to allow you to simply share this progress with a link.
-                    </p>
-                    <p>
-                        This app was made by <a href="https://www.heypano.com/" target={"_blank"}>Pano Papadatos</a> and is open source
-                        (<a href="https://github.com/heypano/wanikanihelper" target={"_blank"}>Source here</a>)
-                    </p>
-                    <APIKeyInput apiKey={this.state.apiKey} onAPIKeySet={this.onAPIKeySet}/>
-                    {/* Show stuff only if we have an API key */}
-                    {this.hasAPIKey() &&
-                        <div>
-                            <Button color="primary" onClick={this.onCopyProfileUrlClick}>Copy Profile URL</Button>
-                            {
-                                this.state.profileCopied &&
-                                <span className={"ml-2"}>A link to this page has been copied!</span>
-                            }
-                        </div>
-                    }
-
-                </Jumbotron>
+                {this.getHeader()}
                 {/* Show stuff only if we have an API key */}
                 {this.haveAllData() &&
                     <div>
