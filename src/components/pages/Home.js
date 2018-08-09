@@ -7,7 +7,7 @@ import Radicals from "./Radicals";
 import Kanji from "./Kanji";
 import Vocabulary from "./Vocabulary";
 import copy from 'copy-to-clipboard';
-import {defaultErrorHandler} from "../../api/util";
+import {decodeApiKeyFromUrlParam, encodeApiKeyForUrl, defaultErrorHandler} from "../../api/util";
 import {getRadicals} from "../../api/radicals";
 import {getVocabulary} from "../../api/vocabulary";
 import {getKanji} from "../../api/kanji";
@@ -16,7 +16,7 @@ import CellGrid from "../widgets/CellGrid";
 class Home extends React.Component {
     constructor(props) {
         const {match: {params}} = props;
-        const apiKey = params ? params.apiKey : null; // API key from URL
+        const apiKey = params ? decodeApiKeyFromUrlParam(params.apiKey) : null; // API key from URL
 
         super(props);
 
@@ -137,7 +137,7 @@ class Home extends React.Component {
     updateAPIKeyStuff(apiKey = this.state.apiKey){
         if(isApiKey(apiKey)){
             // Change the URL
-            this.props.history.push(`/profile/${apiKey}`);
+            this.props.history.push(`/profile/${encodeApiKeyForUrl(apiKey)}`);
             // Call the services to fetch the data
             this.loadData(apiKey);
         }
