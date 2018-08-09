@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from "prop-types";
 import {Button, Jumbotron} from "reactstrap";
+import copyToClipboard from 'copy-to-clipboard';
 
 class WelcomeHeader extends React.Component {
     constructor(props){
@@ -8,8 +9,21 @@ class WelcomeHeader extends React.Component {
         this.state = {
             profileCopied: false
         };
+        this.onCopyProfileUrlClick = this.onCopyProfileUrlClick.bind(this);
 
     }
+    /**
+     * Called when the button "Copy profile URL" is clicked
+     * @param e
+     */
+    onCopyProfileUrlClick(e){
+        const url = window.location.toString();
+        copyToClipboard(url);
+        this.setState({
+            profileCopied: true
+        })
+    }
+
     render() {
         return <div className={"welcomeHeader"}>
             <Jumbotron>
@@ -26,7 +40,6 @@ class WelcomeHeader extends React.Component {
         </div>
     }
 }
-
 WelcomeHeader.defaultProps = {
     extraClassName: "",
 };

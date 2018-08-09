@@ -3,7 +3,6 @@ import {isApiKey} from "../../util/apiKey";
 import Radicals from "./Radicals";
 import Kanji from "./Kanji";
 import Vocabulary from "./Vocabulary";
-import copy from 'copy-to-clipboard';
 import {decodeApiKeyFromUrlParam, encodeApiKeyForUrl, defaultErrorHandler} from "../../api/util";
 import {getRadicals} from "../../api/radicals";
 import {getVocabulary} from "../../api/vocabulary";
@@ -100,20 +99,8 @@ class Home extends React.Component {
      */
     bindMethods() {
         this.onAPIKeySet = this.onAPIKeySet.bind(this);
-        this.onCopyProfileUrlClick = this.onCopyProfileUrlClick.bind(this);
     }
 
-    /**
-     * Called when the button "Copy profile URL" is clicked
-     * @param e
-     */
-    onCopyProfileUrlClick(e){
-        const url = window.location.toString();
-        copy(url);
-        this.setState({
-            profileCopied: true
-        })
-    }
 
     /**
      * Called by the child component APIKeyInput when the API key is successfully set.
