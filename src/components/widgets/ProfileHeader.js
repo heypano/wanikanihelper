@@ -25,17 +25,30 @@ class WelcomeHeader extends React.Component {
     }
 
     render() {
+        let usernameLabel = "";
+        let imagePortion = "";
+
+        if(this.props.radicalsLoaded){
+            const {user_information} = this.props.radicalsData;
+            const {username, gravatar} = user_information;
+            usernameLabel = username + "'s";
+            // No pics for now
+            // if(gravatar){
+            //     const url = `https://www.gravatar.com/avatar/${gravatar}`;
+            //     imagePortion = <img src={url}></img>
+            // }
+        }
+        usernameLabel = usernameLabel || "Your";
+
+
         return <div className={"welcomeHeader"}>
             <Jumbotron>
-                <h1 className="display-3">Your Profile</h1>
-                {/* Show stuff only if we have an API key */}
-                <div>
-                    <Button color="primary" onClick={this.onCopyProfileUrlClick}>Copy Profile URL</Button>
-                    {
-                        this.state.profileCopied &&
-                        <span className={"ml-2"}>A link to this page has been copied!</span>
-                    }
-                </div>
+                <h1 className="display-3"><strong>{usernameLabel}</strong> WaniKani Learning Progress</h1>{imagePortion}
+                <Button color="primary" onClick={this.onCopyProfileUrlClick}>Copy Profile URL</Button>
+                {
+                    this.state.profileCopied &&
+                    <span className={"ml-2"}>A link to this page has been copied!</span>
+                }
             </Jumbotron>
         </div>
     }
@@ -45,7 +58,13 @@ WelcomeHeader.defaultProps = {
 };
 
 WelcomeHeader.propTypes = {
-    onAPIKeySet: PropTypes.func.isRequired,
+    apiKey: PropTypes.string,
+    radicalsData: PropTypes.object.isRequired,
+    radicalsLoaded: PropTypes.bool.isRequired,
+    kanjiLoaded: PropTypes.object.isRequired,
+    kanjiData: PropTypes.bool.isRequired,
+    vocabularyData: PropTypes.object.isRequired,
+    vocabularyLoaded: PropTypes.bool.isRequired,
 };
 
 export default WelcomeHeader;

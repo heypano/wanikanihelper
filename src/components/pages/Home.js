@@ -145,9 +145,21 @@ class Home extends React.Component {
     }
 
     getHeader (){
-        const HeaderClass = this.hasAPIKey() ? ProfileHeader : WelcomeHeader;
         return <div className={"homeHeader"}>
-            <HeaderClass onAPIKeySet={this.onAPIKeySet} apiKey={this.state.apiKey}></HeaderClass>
+            {this.hasAPIKey() &&
+                <ProfileHeader
+                    apiKey={this.state.apiKey}
+                    kanjiData={this.state.kanjiData}
+                    kanjiLoaded={this.state.kanjiLoaded}
+                    radicalsLoaded={this.state.radicalsLoaded}
+                    radicalsData={this.state.radicalsData}
+                    vocabularyLoaded={this.state.vocabularyLoaded}
+                    vocabularyData={this.state.vocabularyData}
+                ></ProfileHeader>
+            }
+            { !this.hasAPIKey() &&
+                <WelcomeHeader onAPIKeySet={this.onAPIKeySet}></WelcomeHeader>
+            }
         </div>
     }
 

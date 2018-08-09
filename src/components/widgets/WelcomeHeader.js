@@ -34,8 +34,7 @@ class WelcomeHeader extends React.Component {
 }
 
 WelcomeHeader.propTypes = {
-    apiKey: PropTypes.string.isRequired
-
+    onAPIKeySet: PropTypes.func.isRequired
 };
 
 export default WelcomeHeader;
