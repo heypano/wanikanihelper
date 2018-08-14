@@ -99,6 +99,7 @@ class Home extends React.Component {
      */
     bindMethods() {
         this.onAPIKeySet = this.onAPIKeySet.bind(this);
+        this.onFiltersChanged = this.onFiltersChanged.bind(this);
     }
 
 
@@ -144,17 +145,34 @@ class Home extends React.Component {
         return item.level;
     }
 
+    /**
+     * Called when the filters change
+     * @param filters
+     */
+    onFiltersChanged(filters){
+        console.log("Filters have changed!!", filters);
+    }
+
+    /**
+     * Returns the rendered header
+     * @returns {*}
+     */
     getHeader (){
+        let {apiKey, kanjiLoaded, kanjiData, radicalsLoaded, radicalsData, vocabularyLoaded, vocabularyData} = this.state;
+        kanjiData = kanjiData || {};
+        radicalsData = radicalsData || {};
+        vocabularyData = vocabularyData || {};
         return <div className={"homeHeader"}>
             {this.hasAPIKey() &&
                 <ProfileHeader
-                    apiKey={this.state.apiKey}
-                    kanjiData={this.state.kanjiData}
-                    kanjiLoaded={this.state.kanjiLoaded}
-                    radicalsLoaded={this.state.radicalsLoaded}
-                    radicalsData={this.state.radicalsData}
-                    vocabularyLoaded={this.state.vocabularyLoaded}
-                    vocabularyData={this.state.vocabularyData}
+                    apiKey={apiKey}
+                    kanjiData={kanjiData}
+                    kanjiLoaded={kanjiLoaded}
+                    radicalsLoaded={radicalsLoaded}
+                    radicalsData={radicalsData}
+                    vocabularyLoaded={vocabularyLoaded}
+                    vocabularyData={vocabularyData}
+                    onFiltersChanged={this.onFiltersChanged}
                 ></ProfileHeader>
             }
             { !this.hasAPIKey() &&

@@ -2,16 +2,24 @@ import React from 'react';
 import PropTypes from "prop-types";
 import {Button, Jumbotron} from "reactstrap";
 import copyToClipboard from 'copy-to-clipboard';
+import FilterPane from "./FilterPane";
 
-class WelcomeHeader extends React.Component {
+class ProfileHeader extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            profileCopied: false
+            profileCopied: false,
+            filters: {}
         };
-        this.onCopyProfileUrlClick = this.onCopyProfileUrlClick.bind(this);
+        this.bindMethods();
 
     }
+
+    bindMethods(){
+        this.onCopyProfileUrlClick = this.onCopyProfileUrlClick.bind(this);
+        this.onFiltersChanged = this.onFiltersChanged.bind(this);
+    }
+
     /**
      * Called when the button "Copy profile URL" is clicked
      * @param e
@@ -22,6 +30,16 @@ class WelcomeHeader extends React.Component {
         this.setState({
             profileCopied: true
         })
+    }
+
+    onFiltersChanged(filters){
+        const {onFiltersChanged} = this.props;
+        this.setState({
+            filters: filters
+        }, function () {
+            // Call onFiltersChanged from props
+            onFiltersChanged(this.state.filters);
+        });
     }
 
     render() {
@@ -41,7 +59,7 @@ class WelcomeHeader extends React.Component {
         usernameLabel = usernameLabel || "Your";
 
 
-        return <div className={"welcomeHeader"}>
+        return <div className={"profileHeader"}>
             <Jumbotron>
                 <h1 className="display-3"><strong>{usernameLabel}</strong> WaniKani Learning Progress</h1>{imagePortion}
                 <Button color="primary" onClick={this.onCopyProfileUrlClick}>Copy Profile URL</Button>
@@ -50,21 +68,23 @@ class WelcomeHeader extends React.Component {
                     <span className={"ml-2"}>A link to this page has been copied!</span>
                 }
             </Jumbotron>
+            <FilterPane onFiltersChanged={this.onFiltersChanged}/>
         </div>
     }
 }
-WelcomeHeader.defaultProps = {
+ProfileHeader.defaultProps = {
     extraClassName: "",
 };
 
-WelcomeHeader.propTypes = {
+ProfileHeader.propTypes = {
     apiKey: PropTypes.string,
-    radicalsData: PropTypes.object.isRequired,
     radicalsLoaded: PropTypes.bool.isRequired,
-    kanjiLoaded: PropTypes.object.isRequired,
-    kanjiData: PropTypes.bool.isRequired,
-    vocabularyData: PropTypes.object.isRequired,
+    radicalsData: PropTypes.object.isRequired,
+    kanjiLoaded: PropTypes.bool.isRequired,
+    kanjiData: PropTypes.object.isRequired,
     vocabularyLoaded: PropTypes.bool.isRequired,
+    vocabularyData: PropTypes.object.isRequired,
+    onFiltersChanged: PropTypes.func.isRequired
 };
 
-export default WelcomeHeader;
+export default ProfileHeader;
