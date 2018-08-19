@@ -9,8 +9,8 @@ class ProfileHeader extends React.Component {
         super(props);
         this.state = {
             profileCopied: false,
-            filters: {}
-        };
+            filters: props.filters
+        }
         this.bindMethods();
 
     }
@@ -32,12 +32,16 @@ class ProfileHeader extends React.Component {
         })
     }
 
+    /**
+     * Called by the filter pane when the filters change
+     * @param filters
+     */
     onFiltersChanged(filters){
         const {onFiltersChanged} = this.props;
         this.setState({
             filters: filters
         }, function () {
-            // Call onFiltersChanged from props
+            // Call onFiltersChanged from props (for the home module to deal with it)
             onFiltersChanged(this.state.filters);
         });
     }
@@ -68,7 +72,7 @@ class ProfileHeader extends React.Component {
                     <span className={"ml-2"}>A link to this page has been copied!</span>
                 }
             </Jumbotron>
-            <FilterPane onFiltersChanged={this.onFiltersChanged}/>
+            <FilterPane onFiltersChanged={this.onFiltersChanged} filters={this.props.filters}/>
         </div>
     }
 }
@@ -84,7 +88,8 @@ ProfileHeader.propTypes = {
     kanjiData: PropTypes.object.isRequired,
     vocabularyLoaded: PropTypes.bool.isRequired,
     vocabularyData: PropTypes.object.isRequired,
-    onFiltersChanged: PropTypes.func.isRequired
+    onFiltersChanged: PropTypes.func.isRequired,
+    filters: PropTypes.object.isRequired // Default filters in props
 };
 
 export default ProfileHeader;

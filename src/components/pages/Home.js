@@ -9,6 +9,7 @@ import {getVocabulary} from "../../api/vocabulary";
 import {getKanji} from "../../api/kanji";
 import ProfileHeader from "../widgets/ProfileHeader";
 import WelcomeHeader from "../widgets/WelcomeHeader";
+import {defaultFiltersConfig, getCombinedFilterFunction} from "../../util/filters";
 
 class Home extends React.Component {
     constructor(props) {
@@ -29,6 +30,7 @@ class Home extends React.Component {
             kanjiData: null, // The response from the kanji API call
             vocabularyLoaded: false, // Has the vocabulary loaded (WK API call)
             vocabularyData: null, // The response from the vocabulary API call
+            filters: defaultFiltersConfig()
         };
     }
 
@@ -150,7 +152,9 @@ class Home extends React.Component {
      * @param filters
      */
     onFiltersChanged(filters){
-        console.log("Filters have changed!!", filters);
+        this.setState({
+            filters: filters
+        });
     }
 
     /**
@@ -173,6 +177,7 @@ class Home extends React.Component {
                     vocabularyLoaded={vocabularyLoaded}
                     vocabularyData={vocabularyData}
                     onFiltersChanged={this.onFiltersChanged}
+                    filters={this.state.filters}
                 ></ProfileHeader>
             }
             { !this.hasAPIKey() &&
@@ -186,6 +191,7 @@ class Home extends React.Component {
      * @returns {*}
      */
     render() {
+        let filterFunction = getCombinedFilterFunction(this.state.filters);
         return (
             <div>
                 {this.getHeader()}
@@ -193,12 +199,15 @@ class Home extends React.Component {
                 {this.haveAllData() &&
                     <div>
                         <Radicals itemArray={this.state.radicalsData}
+                                  filterFunction={filterFunction}
                                   groupFunction={this.groupFunction}
                         />
                         <Kanji itemArray={this.state.kanjiData}
+                               filterFunction={filterFunction}
                                groupFunction={this.groupFunction}
                         />
                         <Vocabulary itemArray={this.state.vocabularyData}
+                                    filterFunction={filterFunction}
                                     groupFunction={this.groupFunction}
                         />
                     </div>

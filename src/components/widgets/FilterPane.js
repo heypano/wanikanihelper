@@ -3,27 +3,16 @@ import PropTypes from "prop-types";
 import {Jumbotron} from "reactstrap";
 import FilterCheckbox from "../inputs/Filters/FilterCheckbox";
 import _ from 'lodash';
-import {meaningCorrectAtLeastOnce, excludeEnlightened, includeThis} from "../../util/filters";
 
 class FilterPane extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            filters: {
-                    "Enlightened": {
-                        filterMethodOn: excludeEnlightened,
-                        filterMethodOff: includeThis,
-                        value: true
-                    },
-                    "Enlightened2": {
-                        filterMethodOn: excludeEnlightened,
-                        filterMethodOff: includeThis,
-                        value: true
-                    }
-                }
+            filters: this.props.filters
         };
         this.bindMethods();
     }
+
     bindMethods(){
         this.onFilterCheckboxChanged = this.onFilterCheckboxChanged.bind(this);
         this.onFilterStateChanged = this.onFilterStateChanged.bind(this);
@@ -55,7 +44,9 @@ class FilterPane extends React.Component {
      */
     onFilterStateChanged() {
         const {onFiltersChanged} = this.props;
-        onFiltersChanged(this.state.filters);
+        const {filters} = this.state;
+        // Call the onFiltersChanged method that was passed in the props
+        onFiltersChanged(filters);
     }
 
     render() {
@@ -89,7 +80,8 @@ FilterPane.defaultProps = {
 };
 
 FilterPane.propTypes = {
-    onFiltersChanged: PropTypes.func.isRequired
+    onFiltersChanged: PropTypes.func.isRequired,
+    filters: PropTypes.object.isRequired
 };
 
 export default FilterPane;
