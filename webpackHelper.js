@@ -74,6 +74,25 @@ export function getCopyPlugins(environment){
 }
 
 /**
+ * Return the array of CSS loaders used by ExtractTextPlugin
+ * @param {"DEV" | "PROD"} environment
+ * @returns {Array}
+ */
+export function getCSSLoaders(environment){
+    return [{
+            loader: 'css-loader',
+            options: {
+                sourceMap: true
+            }
+        },{
+            loader: 'sass-loader',
+            options: {
+                sourceMap: true
+            }
+        }];
+}
+
+/**
  * Get CSS related plugins
  * @param environment
  * @returns {*[]}

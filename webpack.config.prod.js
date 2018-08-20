@@ -1,6 +1,6 @@
 import path from 'path';
 import webpack from 'webpack';
-import {getPlugins, getEntryPoints, getOutputData} from './webpackHelper';
+import {getPlugins, getEntryPoints, getOutputData, getCSSLoaders} from './webpackHelper';
 import ExtractTextPlugin from "extract-text-webpack-plugin";
 const environment = "PROD";
 
@@ -20,7 +20,7 @@ let config = {
             test: /\.s?css$/,
             use: ExtractTextPlugin.extract({
                 fallback: 'style-loader',
-                use: ['css-loader', 'sass-loader']
+                use: getCSSLoaders(environment)
             })
         }]
     }
