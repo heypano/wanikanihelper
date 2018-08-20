@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import _ from 'lodash';
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 
 // Class Component
@@ -32,10 +33,10 @@ class Checkbox extends React.Component {
 
     render() {
         const {extraClassName, label, value} = this.props;
+        const uniqueId = _.uniqueId("checkbox");
         return <FormGroup check className={`filterCheckbox ${extraClassName}`}>
-            <Label check>
-                {/* Use defaultValue for first value ? */}
-                <Input type="checkbox" onChange={this.onChangeWrapped} checked={value}/>{' '}
+            <Input id={uniqueId} type="checkbox" onChange={this.onChangeWrapped} checked={value}/>{' '}
+            <Label for={uniqueId}>
                 {label}
             </Label>
         </FormGroup>
@@ -46,7 +47,8 @@ class Checkbox extends React.Component {
 Checkbox.propTypes = {
     name: PropTypes.string,
     value: PropTypes.bool,
-    label: PropTypes.string
+    label: PropTypes.string,
+    extraClassName: PropTypes.string
 };
 
 export default Checkbox;

@@ -52,6 +52,31 @@ body {
     }
 }
 
+.filterPane{
+    display: flex;
+    justify-content: space-around;
+    .filterCheckbox{
+        width: 135px;
+        margin-right: auto;
+        background-color: $background-color;
+        color: $white-text-color;
+        border-radius: 5px;
+        padding: 5px;
+        cursor: pointer;
+        user-select: none;
+        .form-check-input{
+            margin-left: 0px;
+            cursor: pointer;
+        }
+        label{
+            cursor: pointer;
+            width: 100%;
+            text-align: right;
+            margin: 0px;
+        }
+    }
+}
+
 .kanjiCell{
     // background-color: $kanjiPink;
 }

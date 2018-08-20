@@ -50,28 +50,26 @@ class FilterPane extends React.Component {
     }
 
     render() {
-        return <div className={"filterPane"}>
-            <Jumbotron>
-                <div>
-                    <div>
-                        {
-                            _.map(this.state.filters, (item, name) => {
-                                const uniqueId = _.uniqueId("FilterCheckbox_");
-                                const {filterMethodOn, filterMethodOff, value} = item;
-                                return <FilterCheckbox
-                                            key={uniqueId}
-                                            onFilterChange={this.onFilterCheckboxChanged}
-                                            name={name}
-                                            label={name}
-                                            value={value}
-                                            filterMethodOn={filterMethodOn}
-                                            filterMethodOff={filterMethodOff}></FilterCheckbox>
-                            })
-                        }
-                    </div>
-                </div>
-            </Jumbotron>
-        </div>
+        return <Jumbotron>
+            <h3>Filtering</h3>
+            <div className={"filterPane"}>
+                    {
+                        _.map(this.state.filters, (item, name) => {
+                            const uniqueId = _.uniqueId("FilterCheckbox_");
+                            const {filterMethodOn, filterMethodOff, value, cssClass} = item;
+                            return <FilterCheckbox
+                                        key={uniqueId}
+                                        onFilterChange={this.onFilterCheckboxChanged}
+                                        extraClassName={cssClass}
+                                        name={name}
+                                        label={name}
+                                        value={value}
+                                        filterMethodOn={filterMethodOn}
+                                        filterMethodOff={filterMethodOff}></FilterCheckbox>
+                        })
+                    }
+            </div>
+        </Jumbotron>
     }
 }
 

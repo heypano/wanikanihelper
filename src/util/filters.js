@@ -108,27 +108,32 @@ function defaultFiltersConfig () {
         "Apprentice": {
             filterMethodOff: excludeApprentice,
             filterMethodOn: includeThis,
-            value: true
+            value: true,
+            cssClass: "apprentice"
         },
         "Guru": {
             filterMethodOff: excludeGuru,
             filterMethodOn: includeThis,
-            value: true
+            value: true,
+            cssClass: "guru"
         },
         "Master": {
             filterMethodOff: excludeMaster,
             filterMethodOn: includeThis,
-            value: true
+            value: true,
+            cssClass: "master"
         },
         "Enlightened": {
             filterMethodOff: excludeEnlightened,
             filterMethodOn: includeThis,
-            value: true
+            value: true,
+            cssClass: "enlightened"
         },
         "Burned": {
             filterMethodOff: excludeBurned,
             filterMethodOn: includeThis,
-            value: true
+            value: true,
+            cssClass: "burned"
         }
     }
 }

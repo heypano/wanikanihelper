@@ -31,7 +31,8 @@ FilterCheckbox.propTypes = {
     onFilterChange: PropTypes.func.isRequired,
     name: PropTypes.string.isRequired,
     value: PropTypes.bool,
-    label: PropTypes.string
+    label: PropTypes.string,
+    extraClassName: PropTypes.string
 };
 
 export default FilterCheckbox;
