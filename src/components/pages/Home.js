@@ -124,8 +124,13 @@ class Home extends React.Component {
      */
     updateAPIKeyStuff(apiKey = this.state.apiKey){
         if(isApiKey(apiKey)){
-            // Change the URL
-            this.props.history.push(`/profile/${encodeApiKeyForUrl(apiKey)}`);
+            const newPath = `/profile/${encodeApiKeyForUrl(apiKey)}`;
+            const oldPath = this.props.history.location.pathname;
+
+            if(oldPath !== newPath){
+                // Change the URL
+                this.props.history.push(`/profile/${encodeApiKeyForUrl(apiKey)}`);
+            }
             // Call the services to fetch the data
             this.loadData(apiKey);
         }
