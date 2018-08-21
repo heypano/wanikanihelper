@@ -160,19 +160,20 @@ function defaultFiltersConfig () {
  */
 function getCombinedFilterFunction(filters){
     const filterMethod = function (item) {
-        let shouldKeep = true; // Assume we should keep everything
+        let shouldKeep = userHasUnlocked(item); // Keep everything the user has unlocked
+
         const filterKeys = Object.keys(filters);
         // Run the item through each filter
         // Break out when we find false
         for(let i = 0; i < filterKeys.length; i++){
+            if(!shouldKeep){
+                break;
+            }
             const key = filterKeys[i];
             const filterData = filters[key];
             const {value, filterMethodOff, filterMethodOn} = filterData;
             const methodToUse = value ? filterMethodOn : filterMethodOff;
             shouldKeep = methodToUse(item);
-            if(!shouldKeep){
-                break;
-            }
         }
         return shouldKeep;
     };
