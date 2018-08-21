@@ -49,6 +49,13 @@ class FilterPane extends React.Component {
         onFiltersChanged(filters);
     }
 
+    /**
+     * Returns the filters keyed by category
+     */
+    getFiltersByCategory(){
+        return _.groupBy(this.state.filters, "category");
+    }
+
     render() {
         const filtersByCategory = this.getFiltersByCategory();
         return <div className={"filterPaneContainer"}>
