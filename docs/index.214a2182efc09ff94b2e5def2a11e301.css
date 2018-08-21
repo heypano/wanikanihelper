@@ -270,6 +270,8 @@ template {
 
 [hidden] {
   display: none !important; }
+
+/*# sourceMappingURL=bootstrap-reboot.css.map */
 /*!
  * Bootstrap Grid v4.0.0 (https://getbootstrap.com)
  * Copyright 2011-2018 The Bootstrap Authors
@@ -1886,6 +1888,8 @@ html {
   .align-self-xl-stretch {
     -ms-flex-item-align: stretch !important;
     align-self: stretch !important; } }
+
+/*# sourceMappingURL=bootstrap-grid.css.map */
 /*!
  * Bootstrap v4.0.0 (https://getbootstrap.com)
  * Copyright 2011-2018 The Bootstrap Authors
@@ -9109,12 +9113,21 @@ a.text-dark:hover, a.text-dark:focus {
   .table-bordered th,
   .table-bordered td {
     border: 1px solid #ddd !important; } }
+
+/*# sourceMappingURL=bootstrap.css.map */
 /* Colors Some from https://palx.jxnblk.com/00a1f1 */
 /* WaniKani */
 body {
   font-family: "BryantProRegular", 'Helvetica Neue', helvetica, arial, sans-serif, "Helvetica Neue";
   background-color: #364046;
   color: #364046; }
+
+h3 {
+  margin-bottom: 1rem;
+  margin-top: 2rem; }
+
+h4 {
+  margin-bottom: 1rem; }
 
 .jumbotron {
   background-color: #cdd4d7; }
@@ -9125,6 +9138,28 @@ body {
 
 .APIKeyInput input {
   width: 20em; }
+
+.filterPane .filterCategory {
+  display: flex;
+  justify-content: space-around; }
+
+.filterPane .filterCheckbox {
+  width: 135px;
+  margin-right: auto;
+  background-color: #364046;
+  color: #ebedef;
+  border-radius: 5px;
+  padding: 5px;
+  cursor: pointer;
+  user-select: none; }
+  .filterPane .filterCheckbox .form-check-input {
+    margin-left: 0px;
+    cursor: pointer; }
+  .filterPane .filterCheckbox label {
+    cursor: pointer;
+    width: 100%;
+    text-align: right;
+    margin: 0px; }
 
 .wordCell {
   display: inline-block;
@@ -9138,4 +9173,4 @@ body {
     filter: invert(100);
     width: 20.81px; }
 
-/*# sourceMappingURL=index.e99fac31e6f223e5c5e8f48cbed4eb98.css.map*/
+/*# sourceMappingURL=index.214a2182efc09ff94b2e5def2a11e301.css.map*/
