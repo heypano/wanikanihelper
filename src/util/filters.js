@@ -106,34 +106,49 @@ function excludeBurned(item){
 function defaultFiltersConfig () {
     return {
         "Apprentice": {
+            filterName: "Apprentice",
             filterMethodOff: excludeApprentice,
             filterMethodOn: includeThis,
             value: true,
-            cssClass: "apprentice"
+            cssClass: "apprentice",
+            category: "Item Status",
+            type: "FilterCheckbox"
         },
         "Guru": {
+            filterName: "Guru",
             filterMethodOff: excludeGuru,
             filterMethodOn: includeThis,
             value: true,
-            cssClass: "guru"
+            cssClass: "guru",
+            category: "Item Status",
+            type: "FilterCheckbox"
         },
         "Master": {
+            filterName: "Master",
             filterMethodOff: excludeMaster,
             filterMethodOn: includeThis,
             value: true,
-            cssClass: "master"
+            cssClass: "master",
+            category: "Item Status",
+            type: "FilterCheckbox"
         },
         "Enlightened": {
+            filterName: "Enlightened",
             filterMethodOff: excludeEnlightened,
             filterMethodOn: includeThis,
             value: true,
-            cssClass: "enlightened"
+            cssClass: "enlightened",
+            category: "Item Status",
+            type: "FilterCheckbox"
         },
         "Burned": {
+            filterName: "Burned",
             filterMethodOff: excludeBurned,
             filterMethodOn: includeThis,
             value: true,
-            cssClass: "burned"
+            cssClass: "burned",
+            category: "Item Status",
+            type: "FilterCheckbox"
         }
     }
 }

@@ -50,26 +50,38 @@ class FilterPane extends React.Component {
     }
 
     render() {
-        return <Jumbotron>
-            <h3>Filtering</h3>
+        const filtersByCategory = this.getFiltersByCategory();
+        return <div className={"filterPaneContainer"}>
+            <h3>Filters</h3>
             <div className={"filterPane"}>
                     {
-                        _.map(this.state.filters, (item, name) => {
-                            const uniqueId = _.uniqueId("FilterCheckbox_");
-                            const {filterMethodOn, filterMethodOff, value, cssClass} = item;
-                            return <FilterCheckbox
-                                        key={uniqueId}
-                                        onFilterChange={this.onFilterCheckboxChanged}
-                                        extraClassName={cssClass}
-                                        name={name}
-                                        label={name}
-                                        value={value}
-                                        filterMethodOn={filterMethodOn}
-                                        filterMethodOff={filterMethodOff}></FilterCheckbox>
-                        })
+                       _.map(filtersByCategory, (categoryFilters, category) => {
+                           const categoryUniqueId = _.uniqueId("filterCategory");
+                           return <div key={categoryUniqueId}>
+                               <h4>{category}</h4>
+                               <div className={"filterCategory"}>
+                                  {
+                                      _.map(categoryFilters, (item) => {
+                                          const uniqueId = _.uniqueId("FilterCheckbox_");
+                                          const {filterMethodOn, filterMethodOff, value, cssClass, filterName} = item;
+                                          // debugger;
+                                          return <FilterCheckbox
+                                                      key={uniqueId}
+                                                      onFilterChange={this.onFilterCheckboxChanged}
+                                                      extraClassName={cssClass}
+                                                      name={filterName}
+                                                      label={filterName}
+                                                      value={value}
+                                                      filterMethodOn={filterMethodOn}
+                                                      filterMethodOff={filterMethodOff}></FilterCheckbox>;
+                                      })
+                                  }
+                              </div>
+                           </div>
+                       })
                     }
             </div>
-        </Jumbotron>
+        </div>
     }
 }
 

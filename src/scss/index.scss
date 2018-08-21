@@ -34,6 +34,17 @@ body {
     color: $text-color;
 }
 
+h3{
+    margin-bottom: 1rem;
+    margin-top: 2rem;
+}
+
+h4{
+    margin-bottom: 1rem;
+}
+
+
+
 .jumbotron{
     background-color: $jumbotron-background;
 }
@@ -53,8 +64,10 @@ body {
 }
 
 .filterPane{
-    display: flex;
-    justify-content: space-around;
+    .filterCategory{
+        display: flex;
+        justify-content: space-around;
+    }
     .filterCheckbox{
         width: 135px;
         margin-right: auto;

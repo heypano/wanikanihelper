@@ -71,8 +71,8 @@ class ProfileHeader extends React.Component {
                     this.state.profileCopied &&
                     <span className={"ml-2"}>A link to this page has been copied!</span>
                 }
+                <FilterPane onFiltersChanged={this.onFiltersChanged} filters={this.props.filters}/>
             </Jumbotron>
-            <FilterPane onFiltersChanged={this.onFiltersChanged} filters={this.props.filters}/>
         </div>
     }
 }
