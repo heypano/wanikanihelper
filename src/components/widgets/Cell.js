@@ -8,9 +8,11 @@ class Cell extends React.Component {
     }
     render() {
         const {extraClassName} = this.props;
-        return <div  className={`wordCell ${extraClassName}`}>
+        return <a className={"wordCellLinkContainer"} href={this.getWaniKaniLink()} target={"_blank"}>
+            <div  className={`wordCell ${extraClassName}`}>
             {this.getMainLabel()}
-        </div>
+            </div>
+        </a>
     }
 
     /**
@@ -19,6 +21,18 @@ class Cell extends React.Component {
      */
     getMainLabel () {
         return <div className={"cellLabel"}>{this.getMainLabelContent()}</div>;
+    }
+
+    /**
+     * Returns the link to wankani given an item
+     * Override this in the subclass
+     * @returns {string}
+     */
+    getWaniKaniLink () {
+        const {cellData} = this.props;
+        const {character, meaning} = cellData;
+
+        return "/Override/in/subclass";
     }
 
     /**

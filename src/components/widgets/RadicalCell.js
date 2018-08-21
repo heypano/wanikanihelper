@@ -25,6 +25,17 @@ class RadicalCell extends Cell {
 
             return element;
     }
+
+    /**
+     * Override from Cell - return a link to the WaniKani page for this Radical
+     * @returns {string}
+     */
+    getWaniKaniLink(){
+        const {cellData} = this.props;
+        const {meaning} = cellData;
+        const url = `https://www.wanikani.com/radicals/${meaning}`;
+        return url;
+    }
 }
 
 RadicalCell.defaultProps = {
