@@ -46,12 +46,16 @@ class CellGrid extends React.Component {
                 return(
                     <div key={uniqueGroupId} className={"cellGridGroup"}>
                         <h3>{groupedByLabel} {groupName} - Total: {_.size(groupItems)}</h3>
-                        {_.map(groupItems, (item, key) => this.getCell(CellClass, key, item))}
+                        <div className="cellList">
+                            {_.map(groupItems, (item, key) => this.getCell(CellClass, key, item))}
+                        </div>
                     </div>
                     );
             })
         } else {
-            return _.map(itemCollection, (item, key) => this.getCell(CellClass, key, item));
+            return <div className="cellList">
+                {_.map(itemCollection, (item, key) => this.getCell(CellClass, key, item))}
+            </div>
         }
     }
 
@@ -63,7 +67,7 @@ class CellGrid extends React.Component {
      * @returns {Element} - The react element from JSX / React.createElement
      */
     getCell (CellClass, key, cellData) {
-        return <CellClass key={key} cellData={cellData}></CellClass>
+        return <CellClass key={key} cellData={cellData} kuroshiro={this.props.kuroshiro}></CellClass>
     }
 
     render() {
@@ -84,6 +88,7 @@ CellGrid.propTypes = {
     itemArray: PropTypes.object.isRequired, // The list of items to render
     extraClassName: PropTypes.string.isRequired, // Extra CSS class
     cellClass: PropTypes.func, // React Component class for the cell
+    kuroshiro: PropTypes.object,
     topLabel: PropTypes.string.isRequired, // The top label to use
     getArrayPath: PropTypes.func, // Function that returns the array of items from the data
     sortFunction: PropTypes.func,

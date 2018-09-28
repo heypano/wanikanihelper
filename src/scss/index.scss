@@ -134,6 +134,15 @@ body {
         // background-color: $vocabularyPurple;
     }
 
+    .cellList{
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .wordCellLinkContainer {
+        //flex-grow: 1;
+    }
+
     .wordCell{
         display: inline-block;
         text-align: center;
@@ -142,12 +151,15 @@ body {
         padding: $paddingBase $paddingBase;
         margin: $marginBase $marginBase;
         background-color: $cellBackground;
+        display: flex;
+        align-items: flex-start;
+        flex-direction: column;
         img.wordCellImage{
             filter: invert(100);
             width: 20.81px;
         }
     }
-    a.wordCellLinkContainer{
+    .wordCellLinkContainer a{
         color: inherit;
     }
 }

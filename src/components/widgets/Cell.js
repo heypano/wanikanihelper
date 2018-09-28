@@ -1,18 +1,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {toRomaji} from 'wanakana';
+
 
 // Class Component
 class Cell extends React.Component {
     constructor (props) {
         super(props);
+        this.state = {};
     }
     render() {
-        const {extraClassName} = this.props;
-        return <a className={"wordCellLinkContainer"} href={this.getWaniKaniLink()} target={"_blank"}>
-            <div  className={`wordCell ${extraClassName}`}>
-            {this.getMainLabel()}
-            </div>
-        </a>
+        const {extraClassName, cellData} = this.props;
+        const {character, meaning, kunyomi, onyomi} = cellData;
+        return <div className="wordCellLinkContainer">
+            <a href={this.getWaniKaniLink()} target={"_blank"}>
+                <div  className={`wordCell ${extraClassName}`}>
+                    <div className="mainLabel">{this.getMainLabel()}</div>
+                    {meaning && <div className="meaning">{meaning}</div>}
+                    {kunyomi && <div className="meaning">{kunyomi} - {toRomaji(kunyomi)}</div>}
+                    {onyomi && <div className="meaning">{onyomi} - {toRomaji(onyomi)}</div>}
+                </div>
+            </a>
+        </div>
     }
 
     /**
@@ -51,7 +60,8 @@ class Cell extends React.Component {
 
 Cell.propTypes = {
     extraClassName: PropTypes.string.isRequired, // Extra CSS class
-    cellData: PropTypes.object
+    cellData: PropTypes.object,
+    kuroshiro: PropTypes.object
 };
 
 export default Cell;

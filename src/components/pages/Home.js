@@ -11,13 +11,17 @@ import ProfileHeader from "../widgets/ProfileHeader";
 import WelcomeHeader from "../widgets/WelcomeHeader";
 import {defaultFiltersConfig, getCombinedFilterFunction} from "../../util/filters";
 import { TabContent, TabPane, Nav, NavItem, NavLink, Row, Col } from 'reactstrap';
+import Kuroshiro from 'kuroshiro';
+// import 'node_modules/kuromoji/dict/base.dat.gz';
+import KuromojiAnalyzer from "kuroshiro-analyzer-kuromoji";
 
-class Home extends React.Component {
+class Home extends React.Component{
     constructor(props) {
         const {match: {params}} = props;
         const apiKey = params ? decodeApiKeyFromUrlParam(params.apiKey) : null; // API key from URL
 
         super(props);
+
 
         this.bindMethods();
 
@@ -31,9 +35,19 @@ class Home extends React.Component {
             kanjiData: null, // The response from the kanji API call
             vocabularyLoaded: false, // Has the vocabulary loaded (WK API call)
             vocabularyData: null, // The response from the vocabulary API call
+            kuroshiro: null,
             filters: defaultFiltersConfig(),
             activeTab: 'Kanji'
         };
+        this.initKuroshiro();
+    }
+
+    async initKuroshiro(){
+        const kuroshiro = new Kuroshiro();
+        await kuroshiro.init(new KuromojiAnalyzer());
+        this.setState({
+            kuroshiro: kuroshiro
+        });
     }
 
     componentDidMount () {
@@ -221,7 +235,7 @@ class Home extends React.Component {
                         <Nav tabs className="navTabs">
                             <NavItem>
                                 <NavLink
-                                    className={(this.state.activeTab === 'Kanji') && "active"}
+                                    className={(this.state.activeTab === 'Kanji') ? "active" : ""}
                                     onClick={() => { this.toggleSelectedItems('Kanji'); }}
                                 >
                                     Kanji
@@ -229,7 +243,7 @@ class Home extends React.Component {
                             </NavItem>
                             <NavItem>
                                 <NavLink
-                                    className={(this.state.activeTab === 'Vocabulary') && "active"}
+                                    className={(this.state.activeTab === 'Vocabulary') ? "active" : ""}
                                     onClick={() => { this.toggleSelectedItems('Vocabulary'); }}
                                 >
                                     Vocabulary
@@ -237,7 +251,7 @@ class Home extends React.Component {
                             </NavItem>
                             <NavItem>
                                 <NavLink
-                                    className={(this.state.activeTab === 'Radicals') && "active"}
+                                    className={(this.state.activeTab === 'Radicals') ? "active" : ""}
                                     onClick={() => { this.toggleSelectedItems('Radicals'); }}
                                 >
                                     Radicals
@@ -250,6 +264,7 @@ class Home extends React.Component {
                                     <Row>
                                         <Col>
                                             <Kanji itemArray={this.state.kanjiData}
+                                                   kuroshiro={this.state.kuroshiro}
                                                    filterFunction={filterFunction}
                                                    groupFunction={this.groupFunction}
                                             />
@@ -260,6 +275,7 @@ class Home extends React.Component {
                                     <Row>
                                         <Col>
                                             <Vocabulary itemArray={this.state.vocabularyData}
+                                                        kuroshiro={this.state.kuroshiro}
                                                         filterFunction={filterFunction}
                                                         groupFunction={this.groupFunction}
                                             />
@@ -270,6 +286,7 @@ class Home extends React.Component {
                                     <Row>
                                         <Col>
                                             <Radicals itemArray={this.state.radicalsData}
+                                                      kuroshiro={this.state.kuroshiro}
                                                       filterFunction={filterFunction}
                                                       groupFunction={this.groupFunction}
                                             />

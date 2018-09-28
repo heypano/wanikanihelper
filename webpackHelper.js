@@ -68,7 +68,7 @@ export function getCopyPlugins(environment){
     return [
         new CopyWebpackPlugin([
             // Put files here that need to be directly copied
-            //  { from: 'src/sampleNonCrisisConfig.json', to: 'sampleNonCrisisConfig.json' },
+            { from: 'node_modules/kuromoji/dict', to: 'node_modules/kuromoji/dict' },
         ])
     ]
 }
