@@ -10,6 +10,7 @@ import {getKanji} from "../../api/kanji";
 import ProfileHeader from "../widgets/ProfileHeader";
 import WelcomeHeader from "../widgets/WelcomeHeader";
 import {defaultFiltersConfig, getCombinedFilterFunction} from "../../util/filters";
+import { TabContent, TabPane, Nav, NavItem, NavLink, Row, Col } from 'reactstrap';
 
 class Home extends React.Component {
     constructor(props) {
@@ -30,7 +31,8 @@ class Home extends React.Component {
             kanjiData: null, // The response from the kanji API call
             vocabularyLoaded: false, // Has the vocabulary loaded (WK API call)
             vocabularyData: null, // The response from the vocabulary API call
-            filters: defaultFiltersConfig()
+            filters: defaultFiltersConfig(),
+            activeTab: 'Kanji'
         };
     }
 
@@ -102,6 +104,7 @@ class Home extends React.Component {
     bindMethods() {
         this.onAPIKeySet = this.onAPIKeySet.bind(this);
         this.onFiltersChanged = this.onFiltersChanged.bind(this);
+        this.toggleSelectedItems = this.toggleSelectedItems.bind(this);
     }
 
 
@@ -192,29 +195,89 @@ class Home extends React.Component {
     }
 
     /**
+     * Called when a user switched between Radicals / Kanji / Vocabulary
+     * @param tab
+     */
+    toggleSelectedItems (tab) {
+        if (this.state.activeTab !== tab) {
+            this.setState({
+                activeTab: tab
+            });
+        }
+    }
+
+    /**
      * Render the component based on the state and props (will be called every time state changes with setState)
      * @returns {*}
      */
     render() {
         let filterFunction = getCombinedFilterFunction(this.state.filters);
         return (
-            <div>
+            <div className="pageContent">
                 {this.getHeader()}
                 {/* Show stuff only if we have an API key */}
                 {this.haveAllData() &&
-                    <div>
-                        <Radicals itemArray={this.state.radicalsData}
-                                  filterFunction={filterFunction}
-                                  groupFunction={this.groupFunction}
-                        />
-                        <Kanji itemArray={this.state.kanjiData}
-                               filterFunction={filterFunction}
-                               groupFunction={this.groupFunction}
-                        />
-                        <Vocabulary itemArray={this.state.vocabularyData}
-                                    filterFunction={filterFunction}
-                                    groupFunction={this.groupFunction}
-                        />
+                    <div className="profileContent">
+                        <Nav tabs className="navTabs">
+                            <NavItem>
+                                <NavLink
+                                    className={(this.state.activeTab === 'Kanji') && "active"}
+                                    onClick={() => { this.toggleSelectedItems('Kanji'); }}
+                                >
+                                    Kanji
+                                </NavLink>
+                            </NavItem>
+                            <NavItem>
+                                <NavLink
+                                    className={(this.state.activeTab === 'Vocabulary') && "active"}
+                                    onClick={() => { this.toggleSelectedItems('Vocabulary'); }}
+                                >
+                                    Vocabulary
+                                </NavLink>
+                            </NavItem>
+                            <NavItem>
+                                <NavLink
+                                    className={(this.state.activeTab === 'Radicals') && "active"}
+                                    onClick={() => { this.toggleSelectedItems('Radicals'); }}
+                                >
+                                    Radicals
+                                </NavLink>
+                            </NavItem>
+                        </Nav>
+                        <div className="jumbotron tabContent">
+                            <TabContent activeTab={this.state.activeTab}>
+                                <TabPane tabId="Kanji">
+                                    <Row>
+                                        <Col>
+                                            <Kanji itemArray={this.state.kanjiData}
+                                                   filterFunction={filterFunction}
+                                                   groupFunction={this.groupFunction}
+                                            />
+                                        </Col>
+                                    </Row>
+                                </TabPane>
+                                <TabPane tabId="Vocabulary">
+                                    <Row>
+                                        <Col>
+                                            <Vocabulary itemArray={this.state.vocabularyData}
+                                                        filterFunction={filterFunction}
+                                                        groupFunction={this.groupFunction}
+                                            />
+                                        </Col>
+                                    </Row>
+                                </TabPane>
+                                <TabPane tabId="Radicals">
+                                    <Row>
+                                        <Col>
+                                            <Radicals itemArray={this.state.radicalsData}
+                                                      filterFunction={filterFunction}
+                                                      groupFunction={this.groupFunction}
+                                            />
+                                        </Col>
+                                    </Row>
+                                </TabPane>
+                            </TabContent>
+                        </div>
                     </div>
 
                 }

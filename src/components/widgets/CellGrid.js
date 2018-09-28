@@ -70,7 +70,7 @@ class CellGrid extends React.Component {
         let {extraClassName, itemArray, topLabel, groupFunction} = this.props;
         const itemCollection = this.prepareData(itemArray);
         return (
-            <div className="jumbotron">
+            <div className="cellGridContainer">
                 <h2>{topLabel} - Total: {_.size(itemCollection)}</h2>
                 <div className={`CellGrid ${extraClassName}`}>
                     {this.getList(itemCollection)}
