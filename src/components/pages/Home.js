@@ -14,6 +14,8 @@ import { TabContent, TabPane, Nav, NavItem, NavLink, Row, Col } from 'reactstrap
 import Kuroshiro from 'kuroshiro';
 // import 'node_modules/kuromoji/dict/base.dat.gz';
 import KuromojiAnalyzer from "kuroshiro-analyzer-kuromoji";
+import Parser from "html-react-parser";
+import DOMPurify from "dompurify";
 
 class Home extends React.Component{
     constructor(props) {
@@ -37,7 +39,7 @@ class Home extends React.Component{
             vocabularyData: null, // The response from the vocabulary API call
             kuroshiro: null,
             filters: defaultFiltersConfig(),
-            activeTab: 'Kanji'
+            activeTab: 'Vocabulary'
         };
         this.initKuroshiro();
     }
@@ -63,7 +65,6 @@ class Home extends React.Component{
         this.callGetKanjiService(apiKey);
         this.callGetVocabularyService(apiKey);
     }
-
 
     /**
      * Call the service to get the radicals for this user
@@ -101,7 +102,49 @@ class Home extends React.Component{
                 vocabularyLoaded: true,
                 vocabularyData: response
             });
+
+            // Asynchronously update the data to include the furigana
+            this.loadAllFurigana();
         }).then(defaultErrorHandler);
+    }
+
+    async loadAllFurigana(){
+        const {kuroshiro} = this.state;
+        if(kuroshiro){
+            let vocData = Object.assign({}, this.state.vocabularyData);
+            let items = vocData.requested_information.general;
+            vocData.requested_information.general = await this.getFuriganaedItems(items);
+            this.setState({
+                vocabularyData: vocData
+            });
+        } else {
+            setTimeout(this.loadAllFurigana, 500);
+        }
+    }
+
+    async getFuriganaedItems(items){
+        let newItems = [];
+        for(let i=0; i<items.length; i++){
+            const newItem = Object.assign({}, items[i])
+            newItem.withFurigana = await this.getFurigana(newItem)
+            newItems.push(newItem)
+        }
+        return newItems;
+    }
+
+    async getFurigana(item) {
+        const {kuroshiro} = this.state;
+        const {character} = item;
+        let result = character;
+        if(kuroshiro) {
+            const furigana = await kuroshiro.convert(character, {
+                to: "hiragana",
+                mode: "furigana"
+            });
+            result = DOMPurify.sanitize(furigana);
+        }
+
+        return result;
     }
 
     /**
@@ -119,6 +162,7 @@ class Home extends React.Component{
         this.onAPIKeySet = this.onAPIKeySet.bind(this);
         this.onFiltersChanged = this.onFiltersChanged.bind(this);
         this.toggleSelectedItems = this.toggleSelectedItems.bind(this);
+        this.loadAllFurigana = this.loadAllFurigana.bind(this);
     }
 
 
