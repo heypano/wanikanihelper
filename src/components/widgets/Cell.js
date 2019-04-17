@@ -1,27 +1,37 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {toRomaji} from 'wanakana';
-
+import Highlight from 'react-highlighter';
 
 // Class Component
 class Cell extends React.Component {
     constructor (props) {
         super(props);
-        this.state = {};
+        this.state = {
+            searchExpression: null,
+            cellPressed: false
+        };
+        this.onCellClick = this.onCellClick.bind(this);
+    }
+    onCellClick (e) {
+        e.preventDefault(); // Don't use wanikani link
+        const oppositeState = !this.state.cellPressed;
+        this.setState({
+            cellPressed: oppositeState
+        });
     }
     render() {
         const {extraClassName, cellData} = this.props;
         const {character, meaning, kunyomi, onyomi} = cellData;
-        return <div className="wordCellLinkContainer">
-            <a href={this.getWaniKaniLink()} target={"_blank"}>
-                <div  className={`wordCell ${extraClassName}`}>
+        const {cellPressed} = this.state;
+        const pressedCssClass = cellPressed ? "cellPressed" : "";
+
+        return <div className={`wordCell ${extraClassName} ${pressedCssClass} hvr-float`} onClick={this.onCellClick}>
                     <div className="mainLabel">{this.getMainLabel()}</div>
-                    {meaning && <div className="meaning">{meaning}</div>}
-                    {kunyomi && <div className="meaning">{kunyomi} - {toRomaji(kunyomi)}</div>}
-                    {onyomi && <div className="meaning">{onyomi} - {toRomaji(onyomi)}</div>}
+                    {cellPressed && meaning && <Highlight search={this.state.searchExpression} ignoreDiacritics={true} className="meaning">{meaning}</Highlight>}
+                    {cellPressed && kunyomi && <Highlight search={this.state.searchExpression} ignoreDiacritics={true} className="meaning">{kunyomi} - {toRomaji(kunyomi)}</Highlight>}
+                    {cellPressed && onyomi && <Highlight search={this.state.searchExpression} ignoreDiacritics={true} className="meaning">{onyomi} - {toRomaji(onyomi)}</Highlight>}
                 </div>
-            </a>
-        </div>
     }
 
     /**

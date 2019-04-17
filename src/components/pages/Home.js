@@ -39,9 +39,13 @@ class Home extends React.Component{
             vocabularyData: null, // The response from the vocabulary API call
             kuroshiro: null,
             filters: defaultFiltersConfig(),
-            activeTab: 'Vocabulary'
+            activeTab: 'Vocabulary',
+            furiganaOn: false
         };
-        this.initKuroshiro();
+
+        if(this.state.furiganaOn){
+            this.initKuroshiro();
+        }
     }
 
     async initKuroshiro(){
@@ -110,15 +114,18 @@ class Home extends React.Component{
 
     async loadAllFurigana(){
         const {kuroshiro} = this.state;
-        if(kuroshiro){
-            let vocData = Object.assign({}, this.state.vocabularyData);
-            let items = vocData.requested_information.general;
-            vocData.requested_information.general = await this.getFuriganaedItems(items);
-            this.setState({
-                vocabularyData: vocData
-            });
-        } else {
-            setTimeout(this.loadAllFurigana, 500);
+        const shouldLoadFurigana = this.state.furiganaOn;
+        if(shouldLoadFurigana){
+            if(kuroshiro){
+                let vocData = Object.assign({}, this.state.vocabularyData);
+                let items = vocData.requested_information.general;
+                vocData.requested_information.general = await this.getFuriganaedItems(items);
+                this.setState({
+                    vocabularyData: vocData
+                });
+            } else {
+                setTimeout(this.loadAllFurigana, 500);
+            }
         }
     }
 

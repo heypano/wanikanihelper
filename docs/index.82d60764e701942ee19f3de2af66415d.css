@@ -9122,58 +9122,78 @@ body {
   background-color: #364046;
   color: #364046; }
 
-h3 {
-  margin-bottom: 1rem;
-  margin-top: 2rem; }
-
-h4 {
-  margin-bottom: 1rem; }
-
-.jumbotron {
-  background-color: #cdd4d7; }
-
-.btn a {
-  color: #ebedef;
-  text-decoration: none; }
-
-.APIKeyInput input {
-  width: 20em; }
-
-.filterPane .filterCategory {
-  display: flex;
-  justify-content: space-around; }
-
-.filterPane .filterCheckbox {
-  width: 135px;
-  margin-right: auto;
-  background-color: #364046;
-  color: #ebedef;
-  border-radius: 5px;
-  padding: 5px;
-  cursor: pointer;
-  user-select: none; }
-  .filterPane .filterCheckbox .form-check-input {
-    margin-left: 0px;
+.pageContent {
+  /**
+     Filter/Sort/Show&Hide area
+     */ }
+  .pageContent h1, .pageContent h2, .pageContent h3, .pageContent h4, .pageContent h5, .pageContent h6 {
+    overflow-wrap: break-word; }
+  .pageContent h3 {
+    margin-bottom: 1rem;
+    margin-top: 2rem; }
+  .pageContent h4 {
+    margin-bottom: 1rem; }
+  .pageContent .jumbotron {
+    background-color: #cdd4d7; }
+    .pageContent .jumbotron.tabContent {
+      border-top-left-radius: 0px;
+      border-top-right-radius: 0px; }
+  .pageContent .nav-item .nav-link {
+    background-color: #cdd4d7;
+    border-color: #cdd4d7;
+    border-right-color: #364046;
+    border-bottom: 0px;
     cursor: pointer; }
-  .filterPane .filterCheckbox label {
+    .pageContent .nav-item .nav-link.active {
+      font-weight: bold;
+      text-decoration: underline; }
+    .pageContent .nav-item .nav-link:hover {
+      text-decoration: underline; }
+  .pageContent .btn a {
+    color: #ebedef;
+    text-decoration: none; }
+  .pageContent .APIKeyInput input {
+    width: 20em; }
+  .pageContent .filterPane .filterCategory {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap; }
+  .pageContent .filterPane .filterCheckbox {
+    width: 135px;
+    margin-right: auto;
+    margin-bottom: 10px;
+    background-color: #364046;
+    color: #ebedef;
+    border-radius: 5px;
+    padding: 5px;
     cursor: pointer;
-    width: 100%;
-    text-align: right;
-    margin: 0px; }
+    user-select: none; }
+    .pageContent .filterPane .filterCheckbox .form-check-input {
+      margin-left: 0px;
+      cursor: pointer; }
+    .pageContent .filterPane .filterCheckbox label {
+      cursor: pointer;
+      width: 100%;
+      text-align: right;
+      margin: 0px; }
+  .pageContent .cellList {
+    display: flex;
+    flex-wrap: wrap; }
+  .pageContent .wordCell {
+    display: inline-block;
+    text-align: center;
+    font-size: 1.3em;
+    border-radius: 4px;
+    padding: 8px 8px;
+    margin: 10px 10px;
+    background-color: #ebedef;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column; }
+    .pageContent .wordCell img.wordCellImage {
+      filter: invert(100);
+      width: 20.81px; }
+  .pageContent .wordCellLinkContainer a {
+    color: inherit; }
 
-.wordCell {
-  display: inline-block;
-  text-align: center;
-  font-size: 1.3em;
-  border-radius: 4px;
-  padding: 8px 8px;
-  margin: 10px 10px;
-  background-color: #ebedef; }
-  .wordCell img.wordCellImage {
-    filter: invert(100);
-    width: 20.81px; }
-
-a.wordCellLinkContainer {
-  color: inherit; }
-
-/*# sourceMappingURL=index.4064c9b1a439fd1ae358e1d2c0d443a8.css.map*/
+/*# sourceMappingURL=index.82d60764e701942ee19f3de2af66415d.css.map*/

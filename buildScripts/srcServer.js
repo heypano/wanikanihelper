@@ -11,6 +11,7 @@ const compiler = webpack(webpackConfig);
 const port = config.server.port;
 const server = express();
 const srcDir = "../src/";
+const nodeDir = "../node_modules/";
 const entryFile = "index.html";
 const domain = "http://localhost";
 const siteAddress = domain + ":" + port;
@@ -26,6 +27,10 @@ server.get('/', function(req,res) {
     var file = getPath(srcDir + entryFile);
     res.sendFile(file);
 });
+// server.get('/node_modules/*', function(req,res) {
+//     var file = getPath(srcDir + entryFile);
+//     res.sendFile(file);
+// });
 
 server.listen(port, function (err) {
     if (err) {

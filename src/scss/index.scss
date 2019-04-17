@@ -144,7 +144,6 @@ body {
     }
 
     .wordCell{
-        display: inline-block;
         text-align: center;
         font-size: $cellFontSize;
         border-radius: $borderRadius;
@@ -154,12 +153,28 @@ body {
         display: flex;
         align-items: flex-start;
         flex-direction: column;
+        cursor: pointer;
         img.wordCellImage{
             filter: invert(100);
             width: 20.81px;
+        }
+        &.cellPressed{
+            -webkit-transform: perspective(1px) translateZ(0);
+            transform: perspective(1px) translateZ(0);
+            box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+            -webkit-transition-duration: 0.3s;
+            transition-duration: 0.3s;
+            -webkit-transition-property: transform;
+            transition-property: transform;
+            //-webkit-transform: scale(3);
+            //transform: scale(3);
         }
     }
     .wordCellLinkContainer a{
         color: inherit;
     }
 }
+
+/* Hovering animation stuff */
+@import url("~hover.css");
+

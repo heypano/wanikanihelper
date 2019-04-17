@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from "prop-types";
-import {Jumbotron} from "reactstrap";
+import {Input, Jumbotron} from "reactstrap";
 import FilterCheckbox from "../inputs/Filters/FilterCheckbox";
 import _ from 'lodash';
 
@@ -16,6 +16,7 @@ class FilterPane extends React.Component {
     bindMethods(){
         this.onFilterCheckboxChanged = this.onFilterCheckboxChanged.bind(this);
         this.onFilterStateChanged = this.onFilterStateChanged.bind(this);
+        this.onRangeChanged = this.onRangeChanged.bind(this);
     }
 
     /**
@@ -49,6 +50,11 @@ class FilterPane extends React.Component {
         onFiltersChanged(filters);
     }
 
+    onRangeChanged(e){
+        const widget = e.target;
+        console.log(widget, widget.value);
+    }
+
     /**
      * Returns the filters keyed by category
      */
@@ -66,6 +72,7 @@ class FilterPane extends React.Component {
                            const categoryUniqueId = _.uniqueId("filterCategory");
                            return <div key={categoryUniqueId}>
                                <h4>{category}</h4>
+                               {/*<Input type={"range"} min={100} max={200} step={2} onChange={this.onRangeChanged}></Input>*/}
                                <div className={"filterCategory"}>
                                   {
                                       _.map(categoryFilters, (item) => {
