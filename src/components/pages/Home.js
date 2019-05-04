@@ -10,12 +10,14 @@ import {getKanji} from "../../api/kanji";
 import ProfileHeader from "../widgets/ProfileHeader";
 import WelcomeHeader from "../widgets/WelcomeHeader";
 import {defaultFiltersConfig, getCombinedFilterFunction} from "../../util/filters";
-import { TabContent, TabPane, Nav, NavItem, NavLink, Row, Col } from 'reactstrap';
+import {Jumbotron, Button, TabContent, TabPane, Nav, NavItem, NavLink, Row, Col } from 'reactstrap';
 import Kuroshiro from 'kuroshiro';
 // import 'node_modules/kuromoji/dict/base.dat.gz';
 import KuromojiAnalyzer from "kuroshiro-analyzer-kuromoji";
 import Parser from "html-react-parser";
 import DOMPurify from "dompurify";
+import {connect} from "react-redux";
+import _ from "lodash";
 
 class Home extends React.Component{
     constructor(props) {
@@ -347,4 +349,28 @@ class Home extends React.Component{
     }
 }
 
-export default Home;
+/**
+ * mapStateToProps returns the parts of the state that will be available as props
+ * @param state
+ * @returns {{navigation: *}}
+ */
+const mapStateToProps = state => {
+    return {
+        ...state
+    };
+};
+
+/**
+ * mapDispatchToProps exposes the actions we want to call as props
+ * @param state
+ * @returns {{navigation: *}}
+ */
+const mapDispatchToProps = dispatch => {
+    return {
+        actionName: () => {
+            // dispatch(navBarToggle())
+        }
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

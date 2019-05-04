@@ -1,28 +1,22 @@
 import path from 'path';
 import webpack from 'webpack';
-import {getPlugins, getEntryPoints, getOutputData, getCSSLoaders} from './webpackHelper';
-import ExtractTextPlugin from "extract-text-webpack-plugin";
+import {getPlugins, getEntryPoints, getOutputData, getRules} from './webpackHelper';
+
 const environment = "PROD";
 
 let config = {
     devtool: 'source-map', // Source map settings - does not impact production as source maps are only downloaded when a user opens dev tools
+    mode: 'production',
     entry: getEntryPoints(environment),
     target: 'web', // You can use "node" or "electron" here
     output: getOutputData(environment),
     plugins: getPlugins(environment),
     module: {
         // This means we can import any of these files with the import keyword
-        rules: [{
-            test: /\.js$/,
-            exclude: /node_modules/,
-            use: ['babel-loader']
-        }, {
-            test: /\.s?css$/,
-            use: ExtractTextPlugin.extract({
-                fallback: 'style-loader',
-                use: getCSSLoaders(environment)
-            })
-        }]
+        rules: getRules(environment)
+    },
+    optimization: {
+        minimize: true
     }
 };
 

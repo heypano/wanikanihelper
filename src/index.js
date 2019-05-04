@@ -1,14 +1,17 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import {render} from 'react-dom';
 import Routes from './routes/Routes';
-import { HashRouter as Router} from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap-reboot.css';
-import 'bootstrap/dist/css/bootstrap-grid.css';
-import 'bootstrap/dist/css/bootstrap.css';
+import { BrowserRouter as Router} from 'react-router-dom';
 import './scss/index.scss';
+import { Provider } from 'react-redux';
+import store from './redux/store';
 
-ReactDOM.render((
-    <Router>
+console.log(store.getState());
+
+render((
+    <Provider store={store}>
+        <Router>
         {Routes}
-    </Router>
+        </Router>
+    </Provider>
 ), document.getElementById('app'));
