@@ -16,9 +16,9 @@ class Cell extends React.Component {
             <a href={this.getWaniKaniLink()} target={"_blank"}>
                 <div  className={`wordCell ${extraClassName}`}>
                     <div className="mainLabel">{this.getMainLabel()}</div>
-                    {meaning && <div className="meaning">{meaning}</div>}
-                    {kunyomi && <div className="meaning">{kunyomi} - {toRomaji(kunyomi)}</div>}
-                    {onyomi && <div className="meaning">{onyomi} - {toRomaji(onyomi)}</div>}
+                    {/*{meaning && <div className="meaning">{meaning}</div>}*/}
+                    {/*{kunyomi && <div className="meaning">{kunyomi} - {toRomaji(kunyomi)}</div>}*/}
+                    {/*{onyomi && <div className="meaning">{onyomi} - {toRomaji(onyomi)}</div>}*/}
                 </div>
             </a>
         </div>
