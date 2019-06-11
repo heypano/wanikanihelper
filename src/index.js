@@ -6,8 +6,6 @@ import './scss/index.scss';
 import { Provider } from 'react-redux';
 import store from './redux/store';
 
-console.log(store.getState());
-
 render((
     <Provider store={store}>
         <Router>

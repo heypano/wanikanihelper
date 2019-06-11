@@ -43,7 +43,7 @@ class Home extends React.Component{
             filters: defaultFiltersConfig(),
             activeTab: 'Vocabulary'
         };
-        this.initKuroshiro().then(() => {console.log("Kuroshiro initialized")}, () => {console.log("Kuroshiro did not initialize")});
+        // this.initKuroshiro().then(() => {console.log("Kuroshiro initialized")}, () => {console.log("Kuroshiro did not initialize")});
     }
 
     async initKuroshiro(){
