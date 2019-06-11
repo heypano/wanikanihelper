@@ -185,7 +185,14 @@ export function getRules(environment){
                 loader: MiniCSSExtractPlugin.loader
             },
             {
-                loader: 'css-loader'
+                loader: 'css-loader',
+                options: {
+                    sourceMap: true,
+                    importLoaders: 1
+                }
+            },
+            {
+                loader: 'postcss-loader'
             },
             {
                 loader: 'sass-loader'
