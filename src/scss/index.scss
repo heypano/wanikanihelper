@@ -1,169 +1,169 @@
-/* Colors Some from https://palx.jxnblk.com/00a1f1 */
-//
-//$grey9: #364046;
-//$grey6: #93a2a9;
-//$grey4: #bbc5c9;
-//$grey3: #cdd4d7;
-//$grey2: #dce1e3;
-//$grey1: #ebedef;
-//$grey0: #f8f9f9;
-//
-///* WaniKani */
-//$apprenticePink: #dd0093;
-//$guruPurple: #882d9e;
-//$masterBlue: #294ddb;
-//$enlightenedLightBlue: #0093dd;
-//$burntBlack: #434343;
-//$radicalLightBlue: #00a1f1;
-//$kanjiPink: #f100a1;
-//$vocabularyPurple: #a100f1;
-//
-//$background-color: $grey9;
-//$white-text-color: $grey1;
-//$text-color: $grey9;
-//$jumbotron-background: $grey3;
-//$cellBackground: $grey1;
-//$cellFontSize: 1.3em;
-//$borderRadius: 4px;
-//$paddingBase: 8px;
-//$marginBase: $paddingBase + 2;
-//
-//
-//@import '~@fortawesome/fontawesome-free/css/all.css';
-//@import 'bootstrap.scss';
-//
-//body {
-//    font-family: "BryantProRegular", 'Helvetica Neue', helvetica, arial, sans-serif, "Helvetica Neue";
-//    background-color: $background-color;
-//    color: $text-color;
-//}
-//
-//.pageContent{
-//
-//    h1,h2,h3,h4,h5,h6{
-//        overflow-wrap: break-word;
-//    }
-//
-//    h3{
-//        margin-bottom: 1rem;
-//        margin-top: 2rem;
-//    }
-//
-//    h4{
-//        margin-bottom: 1rem;
-//    }
-//
-//
-//
-//    .jumbotron{
-//        background-color: $jumbotron-background;
-//        &.tabContent{
-//            border-top-left-radius: 0px;
-//            border-top-right-radius: 0px;
-//        }
-//    }
-//
-//    .nav-item{
-//        .nav-link{
-//            background-color: $jumbotron-background;
-//            border-color: $jumbotron-background;
-//            border-right-color: $background-color;
-//            border-bottom: 0px;
-//            cursor: pointer;
-//            &.active{
-//                font-weight: bold;
-//                text-decoration: underline;
-//            }
-//            &:hover{
-//                text-decoration: underline;
-//            }
-//        }
-//    }
-//
-//    .btn{
-//        // Do not make links in buttons blue
-//        a{
-//            color: $white-text-color;
-//            text-decoration: none;
-//        }
-//    }
-//
-//    .APIKeyInput{
-//        input{
-//            width: 20em;
-//        }
-//    }
-//
-//
-//
-//    /**
-//     Filter/Sort/Show&Hide area
-//     */
-//    .filterPane{
-//        .filterCategory{
-//            display: flex;
-//            justify-content: space-around;
-//            flex-wrap: wrap;
-//        }
-//        .filterCheckbox{
-//            width: 135px;
-//            margin-right: auto;
-//            margin-bottom: $marginBase;
-//            background-color: $background-color;
-//            color: $white-text-color;
-//            border-radius: 5px;
-//            padding: 5px;
-//            cursor: pointer;
-//            user-select: none;
-//            .form-check-input{
-//                margin-left: 0px;
-//                cursor: pointer;
-//            }
-//            label{
-//                cursor: pointer;
-//                width: 100%;
-//                text-align: right;
-//                margin: 0px;
-//            }
-//        }
-//    }
-//
-//    .kanjiCell{
-//        // background-color: $kanjiPink;
-//    }
-//    .radicalCell{
-//        // background-color: $radicalLightBlue;
-//    }
-//    .vocabularyCell{
-//        // background-color: $vocabularyPurple;
-//    }
-//
-//    .cellList{
-//        display: flex;
-//        flex-wrap: wrap;
-//    }
-//
-//    .wordCellLinkContainer {
-//        //flex-grow: 1;
-//    }
-//
-//    .wordCell{
-//        display: inline-block;
-//        text-align: center;
-//        font-size: $cellFontSize;
-//        border-radius: $borderRadius;
-//        padding: $paddingBase $paddingBase;
-//        margin: $marginBase $marginBase;
-//        background-color: $cellBackground;
-//        display: flex;
-//        align-items: flex-start;
-//        flex-direction: column;
-//        img.wordCellImage{
-//            filter: invert(100);
-//            width: 20.81px;
-//        }
-//    }
-//    .wordCellLinkContainer a{
-//        color: inherit;
-//    }
-//}
+/* Colors from https://palx.jxnblk.com/00a1f1 */
+
+$grey9: #364046;
+$grey6: #93a2a9;
+$grey4: #bbc5c9;
+$grey3: #cdd4d7;
+$grey2: #dce1e3;
+$grey1: #ebedef;
+$grey0: #f8f9f9;
+
+/* WaniKani */
+$apprenticePink: #dd0093;
+$guruPurple: #882d9e;
+$masterBlue: #294ddb;
+$enlightenedLightBlue: #0093dd;
+$burntBlack: #434343;
+$radicalLightBlue: #00a1f1;
+$kanjiPink: #f100a1;
+$vocabularyPurple: #a100f1;
+
+$background-color: $grey9;
+$white-text-color: $grey1;
+$text-color: $grey9;
+$jumbotron-background: $grey3;
+$cellBackground: $grey1;
+$cellFontSize: 1.3em;
+$borderRadius: 4px;
+$paddingBase: 8px;
+$marginBase: $paddingBase + 2;
+
+
+@import '~@fortawesome/fontawesome-free/css/all.css';
+@import 'bootstrap.scss';
+
+body {
+    font-family: "BryantProRegular", 'Helvetica Neue', helvetica, arial, sans-serif, "Helvetica Neue";
+    background-color: $background-color;
+    color: $text-color;
+}
+
+.pageContent{
+
+    h1,h2,h3,h4,h5,h6{
+        overflow-wrap: break-word;
+    }
+
+    h3{
+        margin-bottom: 1rem;
+        margin-top: 2rem;
+    }
+
+    h4{
+        margin-bottom: 1rem;
+    }
+
+
+
+    .jumbotron{
+        background-color: $jumbotron-background;
+        &.tabContent{
+            border-top-left-radius: 0px;
+            border-top-right-radius: 0px;
+        }
+    }
+
+    .nav-item{
+        .nav-link{
+            background-color: $jumbotron-background;
+            border-color: $jumbotron-background;
+            border-right-color: $background-color;
+            border-bottom: 0px;
+            cursor: pointer;
+            &.active{
+                font-weight: bold;
+                text-decoration: underline;
+            }
+            &:hover{
+                text-decoration: underline;
+            }
+        }
+    }
+
+    .btn{
+        // Do not make links in buttons blue
+        a{
+            color: $white-text-color;
+            text-decoration: none;
+        }
+    }
+
+    .APIKeyInput{
+        input{
+            width: 20em;
+        }
+    }
+
+
+
+    /**
+     Filter/Sort/Show&Hide area
+     */
+    .filterPane{
+        .filterCategory{
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        .filterCheckbox{
+            width: 135px;
+            margin-right: auto;
+            margin-bottom: $marginBase;
+            background-color: $background-color;
+            color: $white-text-color;
+            border-radius: 5px;
+            padding: 5px;
+            cursor: pointer;
+            user-select: none;
+            .form-check-input{
+                margin-left: 0px;
+                cursor: pointer;
+            }
+            label{
+                cursor: pointer;
+                width: 100%;
+                text-align: right;
+                margin: 0px;
+            }
+        }
+    }
+
+    .kanjiCell{
+        // background-color: $kanjiPink;
+    }
+    .radicalCell{
+        // background-color: $radicalLightBlue;
+    }
+    .vocabularyCell{
+        // background-color: $vocabularyPurple;
+    }
+
+    .cellList{
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .wordCellLinkContainer {
+        //flex-grow: 1;
+    }
+
+    .wordCell{
+        display: inline-block;
+        text-align: center;
+        font-size: $cellFontSize;
+        border-radius: $borderRadius;
+        padding: $paddingBase $paddingBase;
+        margin: $marginBase $marginBase;
+        background-color: $cellBackground;
+        display: flex;
+        align-items: flex-start;
+        flex-direction: column;
+        img.wordCellImage{
+            filter: invert(100);
+            width: 20.81px;
+        }
+    }
+    .wordCellLinkContainer a{
+        color: inherit;
+    }
+}
