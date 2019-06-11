@@ -19,7 +19,7 @@ class WelcomeHeader extends React.Component {
                 <hr className="my-2"/>
                 <p>
                     The goal of this app is to allow you to share with others which <strong>Radicals</strong>, <strong>Kanji</strong> and <strong>Vocabulary</strong> you have learned on
-                    <a href="https://www.wanikani.com/" target={"_blank"}>WaniKani</a>.
+                    <a href="https://www.wanikani.com/" target={"_blank"}> WaniKani</a>.
                 </p>
                 <p>
                     This app was made by <a href="https://www.heypano.com/" target={"_blank"}>Pano Papadatos</a> and is open source

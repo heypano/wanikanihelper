@@ -10,7 +10,7 @@ class ProfileHeader extends React.Component {
         this.state = {
             profileCopied: false,
             filters: props.filters
-        }
+        };
         this.bindMethods();
 
     }
