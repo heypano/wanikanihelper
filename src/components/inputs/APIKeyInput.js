@@ -54,7 +54,7 @@ class APIKeyInput extends React.Component {
 
         return (
             <div className="APIKeyInput mb-2">
-                <label htmlFor={inputId}>Please enter your API key below. (You can find it <a target={"_blank"} href="https://www.wanikani.com/settings/personal_access_tokens#edit_user_api_key">here</a>. Please use the &quot;<strong>API Version 1</strong>&quot; key.)</label><br />
+                <label htmlFor={inputId}>Please enter your API key below. (You can find it <a target={"_blank"} href="https://www.wanikani.com/settings/personal_access_tokens#user_api_key">here</a>. Please use the &quot;<strong>API Version 1</strong>&quot; key.)</label><br />
                 <input name="apiKey" id={inputId} type="text" value={apiKey} onChange={this.handleAPIInputChange} placeholder={"Enter API Key here"}/>
             </div>
         );
